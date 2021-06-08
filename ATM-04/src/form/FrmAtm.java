@@ -5,6 +5,7 @@
  */
 package form;
 import clases.ATM;
+import clases.Pantalla;
 import java.awt.Dimension;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -29,7 +30,10 @@ public class FrmAtm extends javax.swing.JFrame {
         lblImgRetirar.setIcon(imgIni);
         lblImagenDepositar.setIcon(imgIni);
         this.setMinimumSize(new Dimension(500,450));
-        atm.run();
+        Pantalla pantalla = new Pantalla();
+        txtPantalla.setText(pantalla.Bienvenida());
+        
+       
     }
     
     @SuppressWarnings("unchecked")
@@ -275,7 +279,7 @@ public class FrmAtm extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(178, 260, 303, 15);
 
-        btnEjecutivo.setBackground(new java.awt.Color(255, 51, 51));
+        btnEjecutivo.setBackground(new java.awt.Color(51, 153, 255));
         btnEjecutivo.setForeground(new java.awt.Color(255, 255, 255));
         btnEjecutivo.setText("Ejecutivo de cuenta");
         getContentPane().add(btnEjecutivo);
