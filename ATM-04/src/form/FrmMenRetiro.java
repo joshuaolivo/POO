@@ -82,6 +82,11 @@ public class FrmMenRetiro extends javax.swing.JFrame {
         txtPantalla.setColumns(20);
         txtPantalla.setFont(new java.awt.Font("Century Gothic", 0, 13)); // NOI18N
         txtPantalla.setRows(5);
+        txtPantalla.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPantallaKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtPantalla);
 
         btn3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -259,20 +264,6 @@ public class FrmMenRetiro extends javax.swing.JFrame {
 
         lblImagenDepositar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImagenDepositar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        lblImagenDepositar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblImagenDepositarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblImagenDepositarMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lblImagenDepositarMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                lblImagenDepositarMouseReleased(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -470,33 +461,23 @@ public class FrmMenRetiro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lblImgRetirarMouseReleased
 
-    // </editor-fold> 
-    
-    
-    // <editor-fold defaultstate="collapsed" desc="IMAGENES DEPOSITO"> 
-    private void lblImagenDepositarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMouseEntered
-        // TODO add your handling code here:
-        /*Icon imgMouseOut = new ImageIcon(getClass().getResource("/imagenes/ranuraCDinero.png"));
-        lblImagenDepositar.setIcon(imgMouseOut);*/
-    }//GEN-LAST:event_lblImagenDepositarMouseEntered
-
-    private void lblImagenDepositarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMouseExited
-        // TODO add your handling code here:
-        /*Icon imgMouseOut = new ImageIcon(getClass().getResource("/imagenes/ranura.png"));
-        lblImagenDepositar.setIcon(imgMouseOut);*/
-    }//GEN-LAST:event_lblImagenDepositarMouseExited
-
-    private void lblImagenDepositarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMousePressed
-        // TODO add your handling code here:
-        /*Icon imgMouseClick = new ImageIcon(getClass().getResource("/imagenes/ranuraCDineroIn.png"));
-        lblImagenDepositar.setIcon(imgMouseClick);*/
-    }//GEN-LAST:event_lblImagenDepositarMousePressed
-
-    private void lblImagenDepositarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblImagenDepositarMouseReleased
 // </editor-fold> 
     
+    
+    private void txtPantallaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPantallaKeyTyped
+        // TODO add your handling code here:
+        char valid = evt.getKeyChar();
+        if (!Character.isDigit(valid))
+        {
+            evt.consume();
+        }
+        else if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            btnAccion();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPantallaKeyTyped
+
     
     public void btnAccion()
     {

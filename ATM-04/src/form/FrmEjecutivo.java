@@ -74,6 +74,11 @@ public class FrmEjecutivo extends javax.swing.JFrame {
         txtPantalla.setColumns(20);
         txtPantalla.setFont(new java.awt.Font("Century Gothic", 0, 13)); // NOI18N
         txtPantalla.setRows(5);
+        txtPantalla.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPantallaKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtPantalla);
 
         btn3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -229,20 +234,6 @@ public class FrmEjecutivo extends javax.swing.JFrame {
         lblImgRetirar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImgRetirar.setToolTipText("");
         lblImgRetirar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        lblImgRetirar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblImgRetirarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblImgRetirarMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lblImgRetirarMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                lblImgRetirarMouseReleased(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -495,30 +486,7 @@ public class FrmEjecutivo extends javax.swing.JFrame {
     }//GEN-LAST:event_btn2ActionPerformed
 // </editor-fold> 
     
-    
-    // <editor-fold defaultstate="collapsed" desc="IMAGENES RETIRO">    
-    private void lblImgRetirarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImgRetirarMouseEntered
-        // TODO add your handling code here:
-        /*Icon imgMouseIn = new ImageIcon(getClass().getResource("/imagenes/ranuraCDinero.png"));
-        lblImgRetirar.setIcon(imgMouseIn);*/
-    }//GEN-LAST:event_lblImgRetirarMouseEntered
-
-    private void lblImgRetirarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImgRetirarMouseExited
-        // TODO add your handling code here:
-        /*Icon imgMouseOut = new ImageIcon(getClass().getResource("/imagenes/ranura.png"));
-        lblImgRetirar.setIcon(imgMouseOut);*/
-    }//GEN-LAST:event_lblImgRetirarMouseExited
-
-    private void lblImgRetirarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImgRetirarMousePressed
-        // TODO add your handling code here:
-        /*Icon imgMouseClick = new ImageIcon(getClass().getResource("/imagenes/ranuraCDineroOut.png"));
-        lblImgRetirar.setIcon(imgMouseClick);*/
-    }//GEN-LAST:event_lblImgRetirarMousePressed
-
-    private void lblImgRetirarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImgRetirarMouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblImgRetirarMouseReleased
-    // </editor-fold> 
+        // </editor-fold> 
     
     
     // <editor-fold defaultstate="collapsed" desc="IMAGENES DEPOSITO"> 
@@ -543,6 +511,20 @@ public class FrmEjecutivo extends javax.swing.JFrame {
     private void lblImagenDepositarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMouseReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_lblImagenDepositarMouseReleased
+
+    private void txtPantallaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPantallaKeyTyped
+        // TODO add your handling code here:
+        char valid = evt.getKeyChar();
+        if (!Character.isDigit(valid))
+        {
+            evt.consume();
+        }
+        else if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            btnAccion();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPantallaKeyTyped
 // </editor-fold> 
     
     

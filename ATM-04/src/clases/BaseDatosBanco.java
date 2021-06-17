@@ -24,11 +24,6 @@ public class BaseDatosBanco
             float stotal = Float.parseFloat(datosCuentaActual[3]);
             cuentas[ i ] = new Cuenta( ncuenta, nip, sdisp, stotal );
        }
-       /*
-       cuentas[ 0 ] = new Cuenta( 12345, 54321, 1000.0, 1200.0 );
-       cuentas[ 1 ] = new Cuenta( 98765, 56789, 200.0, 200.0 );
-       cuentas[ 2 ] = new Cuenta( 11111, 11111, 300.0, 500.0 );  
-       cuentas[ 3 ] = new Cuenta( 22222, 22222, 1800.0, 1800.0 );*/
        
    } // fin del constructor sin argumentos de BaseDatosBanco
    
