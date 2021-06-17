@@ -1,6 +1,5 @@
 package form;
 
-import clases.ATM;
 import clases.BaseDatosBanco;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -12,7 +11,8 @@ import java.awt.event.KeyEvent;
 public class FrmAtm extends javax.swing.JFrame {
 
     //////////////////////////////////////////////////////////////////////Inicio a pseudocódigo
-    private boolean cuentaAutenticada = false, cuentaIntroducida = false, nipIntroducido = false, primerEjecucion = true; // indica si el usuario es autenticado
+    private boolean cuentaAutenticada = false, cuentaIntroducida = false;
+    private boolean nipIntroducido = false, primerEjecucion = true; // indica si el usuario es autenticado
     public static int numeroCuentaActual;
     private int nipActual; // current user's account number
     private BaseDatosBanco baseDatosBanco = new BaseDatosBanco(); //  base de datos de informaci�n de las cuentas

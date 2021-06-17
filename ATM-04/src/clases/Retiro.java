@@ -4,61 +4,59 @@ package clases;
 
 import form.FrmMenRetiro;
 
-public class Retiro extends Transaccion
-{
-   private int monto; // monto a retirar
-   DispensadorEfectivo dispensadorEfectivo = new DispensadorEfectivo(); // referencia al dispensador de efectivo
+public class Retiro extends Transaccion {
 
-   // constante que corresponde a la opci�n del men� a cancelar
-   private final static int CANCELO = 6;
+    private int monto; // monto a retirar
+    DispensadorEfectivo dispensadorEfectivo = new DispensadorEfectivo(); // referencia al dispensador de efectivo
 
-   // constructor de Retiro
-   public Retiro( int numeroCuentaUsuario, BaseDatosBanco baseDatosBanco )
-   {
-      // inicializa las variables de la superclase
-      super( numeroCuentaUsuario );
-   } // fin del constructor de Retiro
+    // constante que corresponde a la opci�n del men� a cancelar
+    private final static int CANCELO = 6;
 
-   // realiza la transacci�n
-   public String ejecutar()
-   {
+    // constructor de Retiro
+    public Retiro(int numeroCuentaUsuario, BaseDatosBanco baseDatosBanco) {
+        // inicializa las variables de la superclase
+        super(numeroCuentaUsuario);
+    } // fin del constructor de Retiro
+
+    // realiza la transacci�n
+    public String ejecutar() {
         FrmMenRetiro menR = new FrmMenRetiro();
         monto = menR.op;
-        boolean efectivoDispensado= false ; // no se ha dispensado a�n el efectivo
+        boolean efectivoDispensado = false; // no se ha dispensado a�n el efectivo
         double saldoDisponible; // monto disponible para retirar
 
         // obtiene referencias a la base de datos del banco y la pantalla
-        BaseDatosBanco baseDatosBanco = new BaseDatosBanco(); 
-        
+        BaseDatosBanco baseDatosBanco = new BaseDatosBanco();
+
         // obtiene el saldo disponible de la cuenta implicada
-        saldoDisponible = baseDatosBanco.obtenerSaldoDisponible( obtenerNumeroCuenta() );
+        saldoDisponible = baseDatosBanco.obtenerSaldoDisponible(obtenerNumeroCuenta());
         System.out.println("Saldo disponible: " + saldoDisponible);
-      
+
         // comprueba si el usuario tiene suficiente dinero en la cuenta 
-        if ( monto <= saldoDisponible )
-        {   
+        if (monto <= saldoDisponible) {
             // comprueba si el dispensador de efectivo tiene suficiente dinero
-            if ( dispensadorEfectivo.haySuficienteEfectivoDisponible( monto ) )
-            {
+            if (dispensadorEfectivo.haySuficienteEfectivoDisponible(monto)) {
                 // actualiza la cuenta implicada para reflejar el saldo
-                baseDatosBanco.cargar( obtenerNumeroCuenta(), monto );
-                  
-                dispensadorEfectivo.dispensarEfectivo( monto ); // dispensar efectivo
+                baseDatosBanco.cargar(obtenerNumeroCuenta(), monto);
+
+                dispensadorEfectivo.dispensarEfectivo(monto); // dispensar efectivo
                 efectivoDispensado = true; // se dispens� el efectivo
 
                 // instruye al usuario que tome efectivo
-                return "\nTome ahora su efectivo." ;
+                return "\nTome ahora su efectivo.";
             } // fin de if
             else // el dispensador no tiene suficiente efectivo
-                return "\nNo hay suficiente efectivo disponible en el ATM." +
-                        "\n\nSeleccione un monto menor." ;
+            {
+                return "\nNo hay suficiente efectivo disponible en el ATM."
+                        + "\n\nSeleccione un monto menor.";
+            }
         } // fin de if
         else // no hay suficiente dinero disponible en la cuenta del usuario
         {
-            return "\nNo hay suficientes fondos en su cuenta." +
-                    "\n\nSeleccione un monto menor." ;
+            return "\nNo hay suficientes fondos en su cuenta."
+                    + "\n\nSeleccione un monto menor.";
         } // fin de else
-   } // fin del m�todo ejecutar
+    } // fin del m�todo ejecutar
 } // fin de la clase Retiro
 
 

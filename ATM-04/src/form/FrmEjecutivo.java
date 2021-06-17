@@ -509,8 +509,9 @@ public class FrmEjecutivo extends javax.swing.JFrame {
     //////////////////////////////////////////////////////////////////////Inicio a pseudocódigo
     public void btnAccion() {
         if (primerEjecucion) {
-            txtPantalla.setText("Menú de ejecutivo\n-----------\n1.- Consultar cuentas existentes."
-                    + "\n2.- Depositos pendientes de confirmación.\n3.- Dar de baja una cuenta.\n4.- Crear una cuenta."
+            txtPantalla.setText("Menú de ejecutivo\n-----------\n1.- Consultar "
+                    + "cuentas existentes.\n2.- Depositos pendientes de "
+                    + "confirmación.\n3.- Dar de baja una cuenta.\n4.- Crear una cuenta."
                     + "\n5.- Salir del menu.\nSeleccione una opción: ");
             primerEjecucion = false;
             input = "";
@@ -548,41 +549,58 @@ public class FrmEjecutivo extends javax.swing.JFrame {
         int i = 1;
         switch (transaccion) {
             case 1:
-                txtPantalla.setText("Cuentas registradas:\nNo.Cuenta__|_NIP________|_Saldo_disponible_|_Saldo_total\n");
+                txtPantalla.setText("Cuentas registradas:\nNo.Cuenta__|_NIP"
+                        + "________|_Saldo_disponible_|_Saldo_total\n");
                 for (String cuenta : act) {
                     String div[] = cuenta.split(",");
-                    txtPantalla.setText(txtPantalla.getText() + div[0] + "            | " + div[1] + "            | " + div[2] + "                     | " + div[3] + "\n");
+                    txtPantalla.setText(txtPantalla.getText() + div[0] + "      "
+                            + "      | " + div[1] + "            | " + div[2]
+                            + "                     | " + div[3] + "\n");
                 }
-                txtPantalla.setText(txtPantalla.getText() + "Presione 'Aceptar para continuar'");
+                txtPantalla.setText(txtPantalla.getText() + "Presione 'Aceptar "
+                        + "para continuar'");
                 primerEjecucion = true;
                 input = "";
                 break;
             case 2:
-                txtPantalla.setText("Cuentas con confirmación de depósito pendiente:\n  |No.Cuenta__|_NIP________|_Saldo_disponible_|_Saldo_total\n");
+                txtPantalla.setText("Cuentas con confirmación de depósito "
+                        + "pendiente:\n  |No.Cuenta__|_NIP________|_Saldo_disponible"
+                        + "_|_Saldo_total\n");
                 for (String cuenta : act) {
                     String div[] = cuenta.split(",");
                     if (!div[2].equals(div[3])) {
-                        txtPantalla.setText(txtPantalla.getText() + i + "   " + div[0] + "            | " + div[1] + "            | " + div[2] + "                     | " + div[3] + "\n");
+                        txtPantalla.setText(txtPantalla.getText() + i + "   "
+                                + div[0] + "            | " + div[1] + "            | "
+                                + div[2] + "                     | " + div[3] + "\n");
                         i++;
                     }
                 }
-                txtPantalla.setText(txtPantalla.getText() + "Escriba 0 para cancelar, o escriba el índice de alguna\ncuenta para confirmar el depósito: ");
+                txtPantalla.setText(txtPantalla.getText() + "Escriba 0 para "
+                        + "cancelar, o escriba el índice de alguna\ncuenta para "
+                        + "confirmar el depósito: ");
                 input = "";
                 seleccion = 1;
                 break;
             case 3:
-                txtPantalla.setText("Seleccione la cuenta a dar de baja:\nNo se podrán deshacer los cambios.\n  |No.Cuenta__|_NIP________|_Saldo_disponible_|_Saldo_total\n");
+                txtPantalla.setText("Seleccione la cuenta a dar de baja:\nNo se "
+                        + "podrán deshacer los cambios.\n  |No.Cuenta__|_NIP____"
+                        + "____|_Saldo_disponible_|_Saldo_total\n");
                 for (String cuenta : act) {
                     String div[] = cuenta.split(",");
-                    txtPantalla.setText(txtPantalla.getText() + i + "   " + div[0] + "            | " + div[1] + "            | " + div[2] + "                     | " + div[3] + "\n");
+                    txtPantalla.setText(txtPantalla.getText() + i + "   "
+                            + div[0] + "            | " + div[1] + "            | "
+                            + div[2] + "                     | " + div[3] + "\n");
                     i++;
                 }
-                txtPantalla.setText(txtPantalla.getText() + "Escriba 0 para cancelar, o escriba el índice de alguna\ncuenta para confirmar la operación: ");
+                txtPantalla.setText(txtPantalla.getText() + "Escriba 0 para "
+                        + "cancelar, o escriba el índice de alguna\ncuenta para "
+                        + "confirmar la operación: ");
                 input = "";
                 seleccion = 2;
                 break;
             case 4:
-                txtPantalla.setText("Crear nueva cuenta\nSi desea cancelar la operación, escriba 0.\nIntroduce el número de cuenta: ");
+                txtPantalla.setText("Crear nueva cuenta\nSi desea cancelar la "
+                        + "operación, escriba 0.\nIntroduce el número de cuenta: ");
                 state = 1;
                 seleccion = 3;
                 input = "";

@@ -26,7 +26,7 @@ public class FrmMenRetiro extends javax.swing.JFrame {
     private DispensadorEfectivo dispensadorEfectivo; // dispensador de efectivo del ATM
     private BaseDatosBanco baseDatosBanco; //  base de datos de informaci�n de las cuentas
     Icon imgIni = new ImageIcon(getClass().getResource("/imagenes/ranura.png"));
-    
+
     public FrmMenRetiro() {
         initComponents();
         setLocationRelativeTo(null);
@@ -306,7 +306,9 @@ public class FrmMenRetiro extends javax.swing.JFrame {
             txtPantalla.requestFocus();
             robot.keyPress(KeyEvent.VK_3); // Simula presionar la tecla
             robot.keyRelease(KeyEvent.VK_3); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        } catch (AWTException e) {
+            System.out.print(e);
+        }
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
@@ -317,7 +319,9 @@ public class FrmMenRetiro extends javax.swing.JFrame {
             txtPantalla.requestFocus();
             robot.keyPress(KeyEvent.VK_4); // Simula presionar la tecla
             robot.keyRelease(KeyEvent.VK_4); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        } catch (AWTException e) {
+            System.out.print(e);
+        }
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
@@ -328,7 +332,9 @@ public class FrmMenRetiro extends javax.swing.JFrame {
             txtPantalla.requestFocus();
             robot.keyPress(KeyEvent.VK_5); // Simula presionar la tecla
             robot.keyRelease(KeyEvent.VK_5); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        } catch (AWTException e) {
+            System.out.print(e);
+        }
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
@@ -339,7 +345,9 @@ public class FrmMenRetiro extends javax.swing.JFrame {
             txtPantalla.requestFocus();
             robot.keyPress(KeyEvent.VK_6); // Simula presionar la tecla
             robot.keyRelease(KeyEvent.VK_6); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        } catch (AWTException e) {
+            System.out.print(e);
+        }
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
@@ -350,7 +358,9 @@ public class FrmMenRetiro extends javax.swing.JFrame {
             txtPantalla.requestFocus();
             robot.keyPress(KeyEvent.VK_7); // Simula presionar la tecla
             robot.keyRelease(KeyEvent.VK_7); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        } catch (AWTException e) {
+            System.out.print(e);
+        }
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
@@ -361,7 +371,9 @@ public class FrmMenRetiro extends javax.swing.JFrame {
             txtPantalla.requestFocus();
             robot.keyPress(KeyEvent.VK_8); // Simula presionar la tecla
             robot.keyRelease(KeyEvent.VK_8); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        } catch (AWTException e) {
+            System.out.print(e);
+        }
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
@@ -372,7 +384,9 @@ public class FrmMenRetiro extends javax.swing.JFrame {
             txtPantalla.requestFocus();
             robot.keyPress(KeyEvent.VK_9); // Simula presionar la tecla
             robot.keyRelease(KeyEvent.VK_9); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        } catch (AWTException e) {
+            System.out.print(e);
+        }
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
@@ -383,7 +397,9 @@ public class FrmMenRetiro extends javax.swing.JFrame {
             txtPantalla.requestFocus();
             robot.keyPress(KeyEvent.VK_0); // Simula presionar la tecla
             robot.keyRelease(KeyEvent.VK_0); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        } catch (AWTException e) {
+            System.out.print(e);
+        }
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
@@ -394,7 +410,9 @@ public class FrmMenRetiro extends javax.swing.JFrame {
             txtPantalla.requestFocus();
             robot.keyPress(KeyEvent.VK_1); // Simula presionar la tecla
             robot.keyRelease(KeyEvent.VK_1); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        } catch (AWTException e) {
+            System.out.print(e);
+        }
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
@@ -405,8 +423,7 @@ public class FrmMenRetiro extends javax.swing.JFrame {
             robot.keyPress(KeyEvent.VK_ENTER); // Simula presionar la tecla
             robot.keyRelease(KeyEvent.VK_ENTER); // Simula soltar la tecla
         } catch (AWTException e) {System.out.print(e);}*/
-        if (!bloquearEnter)
-        {
+        if (!bloquearEnter) {
             btnAccion();
         }
     }//GEN-LAST:event_btnEnterActionPerformed
@@ -419,11 +436,12 @@ public class FrmMenRetiro extends javax.swing.JFrame {
             txtPantalla.requestFocus();
             robot.keyPress(KeyEvent.VK_2); // Simula presionar la tecla
             robot.keyRelease(KeyEvent.VK_2); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        } catch (AWTException e) {
+            System.out.print(e);
+        }
     }//GEN-LAST:event_btn2ActionPerformed
 // </editor-fold> 
-    
-    
+
     // <editor-fold defaultstate="collapsed" desc="IMAGENES RETIRO">     
     private void lblImgRetirarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImgRetirarMouseEntered
         // TODO add your handling code here:
@@ -447,46 +465,38 @@ public class FrmMenRetiro extends javax.swing.JFrame {
         // TODO add your handling code here:
         Icon imgMouseIn = new ImageIcon(getClass().getResource("/imagenes/ranuraCDinero.png"));
         lblImgRetirar.setIcon(imgMouseIn);
-        if (bloquearEnter)
-        {
+        if (bloquearEnter) {
             tiempo = 3000000;
         }
     }//GEN-LAST:event_lblImgRetirarMouseReleased
 
 // </editor-fold> 
     //////////////////////////////////////////////////////////////////////Fin a pseudocódigo
-    
+
     private void txtPantallaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPantallaKeyTyped
         // TODO add your handling code here:
         char valid = evt.getKeyChar();
-        if (!Character.isDigit(valid))
-        {
+        if (!Character.isDigit(valid)) {
             evt.consume();
-        }
-        else if(evt.getKeyCode() == KeyEvent.VK_ENTER)
-        {
+        } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             btnAccion();
             evt.consume();
         }
     }//GEN-LAST:event_txtPantallaKeyTyped
 
     //////////////////////////////////////////////////////////////////////Inicio a pseudocódigo
-    public void btnAccion()
-    {
-        if (primerEjecucion)
-        {
-            txtPantalla.setText("Inserte un monto a retirar\n-----------\n1.- $100   5.-Otro\n2.- $200   6.-Salir\n3.- $300\n4.- $500\nSeleccione una opción: ");
+    public void btnAccion() {
+        if (primerEjecucion) {
+            txtPantalla.setText("Inserte un monto a retirar\n-----------\n1.- $100"
+                    + "   5.-Otro\n2.- $200   6.-Salir\n3.- $300\n4.- $500\nSeleccione"
+                    + " una opción: ");
             primerEjecucion = false;
-        }
-        else
-        {
+        } else {
             int op_sel = Integer.parseInt(input);
-            if (!otraCantidad)
-            {
-                switch(op_sel)
-                {
+            if (!otraCantidad) {
+                switch (op_sel) {
                     case 1:
-                        op = 100; 
+                        op = 100;
                         realizarRetiro(op);
                         break;
                     case 2:
@@ -502,7 +512,9 @@ public class FrmMenRetiro extends javax.swing.JFrame {
                         realizarRetiro(op);
                         break;
                     case 5:
-                        txtPantalla.setText(txtPantalla.getText() + "\nEspecifique la cantidad (debe ser un número entero,\nej. 500$ son 500$): ");
+                        txtPantalla.setText(txtPantalla.getText() + "\nEspecifique"
+                                + " la cantidad (debe ser un número entero,\nej. 500$"
+                                + " son 500$): ");
                         otraCantidad = true;
                         input = "";
                         break;
@@ -517,47 +529,39 @@ public class FrmMenRetiro extends javax.swing.JFrame {
                         btnAccion();
                         break;
                 }
-            }
-            else
-            {
+            } else {
                 op = Integer.parseInt(input);
                 realizarRetiro(op);
             }
         }
     }
-    
-    public void realizarRetiro(int monto)
-    {
+
+    public void realizarRetiro(int monto) {
         input = "";
         Transaccion temp = null;
-        temp = new Retiro( numeroCuentaActual, baseDatosBanco);
+        temp = new Retiro(numeroCuentaActual, baseDatosBanco);
         String result = temp.ejecutar();
         //System.out.print(result);
         txtPantalla.setText(txtPantalla.getText() + result);
-        
-        if (result.contains("monto menor."))
-        {
+
+        if (result.contains("monto menor.")) {
             primerEjecucion = true;
             otraCantidad = false;
             btnAccion();
             input = "";
-        }
-        else
-        {
-            txtPantalla.setText(txtPantalla.getText() + "\nRetire el dinero de la ranura por favor.");
+        } else {
+            txtPantalla.setText(txtPantalla.getText() + "\nRetire el dinero de"
+                    + " la ranura por favor.");
             bloquearEnter = true;
-            
+
             tiempo = 0;
             //Esta pantalla sirve para esperar que se retire dinero
             Timer timer = new Timer();
-            TimerTask task = new TimerTask()
-            {
+            TimerTask task = new TimerTask() {
                 @Override
-                public void run()
-                {
+                public void run() {
                     tiempo = tiempo + 1000;
-                    if (tiempo >= 3000000)
-                    {
+                    if (tiempo >= 3000000) {
                         timer.cancel();
                         terminarRetiro();
                     }
@@ -566,15 +570,14 @@ public class FrmMenRetiro extends javax.swing.JFrame {
             timer.schedule(task, 0, 1000);
         }
     }
-    
-    public void terminarRetiro()
-    {
+
+    public void terminarRetiro() {
         FrmMenuMain men = new FrmMenuMain();
         men.setVisible(true);
         this.setVisible(false);
     }
     //////////////////////////////////////////////////////////////////////Fin a pseudocódigo
-    
+
     /**
      * @param args the command line arguments
      */

@@ -2,82 +2,75 @@
 // Representa a la base de datos de informaci�n de cuentas bancarias
 package clases;
 
-public class BaseDatosBanco
-{
-   private Cuenta cuentas[]; // arreglo de objetos Cuenta
-   private CArchivo archivos = new CArchivo();
-   
-   // el constructor sin argumentos de BaseDatosBanco inicializa a cuentas
-   public BaseDatosBanco()
-   {
-       
-       int fila = archivos.obtenerFilas();
-       cuentas = new Cuenta[ fila ]; // s�lo n cuentas para probar
-       String todas_cuentas = archivos.leerBD();
-       String arrayFilas[] = todas_cuentas.split(" ");
-       for (int i = 0; i< fila; i++)
-       {
+public class BaseDatosBanco {
+
+    private Cuenta cuentas[]; // arreglo de objetos Cuenta
+    private CArchivo archivos = new CArchivo();
+
+    // el constructor sin argumentos de BaseDatosBanco inicializa a cuentas
+    public BaseDatosBanco() {
+
+        int fila = archivos.obtenerFilas();
+        cuentas = new Cuenta[fila]; // s�lo n cuentas para probar
+        String todas_cuentas = archivos.leerBD();
+        String arrayFilas[] = todas_cuentas.split(" ");
+        for (int i = 0; i < fila; i++) {
             String datosCuentaActual[] = arrayFilas[i].split(",");
             int ncuenta = Integer.parseInt(datosCuentaActual[0]);
             int nip = Integer.parseInt(datosCuentaActual[1]);
             float sdisp = Float.parseFloat(datosCuentaActual[2]);
             float stotal = Float.parseFloat(datosCuentaActual[3]);
-            cuentas[ i ] = new Cuenta( ncuenta, nip, sdisp, stotal );
-       }
-       
-   } // fin del constructor sin argumentos de BaseDatosBanco
-   
-   // obtiene el objeto Cuenta que contiene el n�mero de cuenta especificado
-   private Cuenta obtenerCuenta( int numeroCuenta )
-   {
-      // itera a trav�s de cuentas, buscando el n�mero de cuenta que coincida
-      for ( Cuenta cuentaActual : cuentas )
-      {
-         // devuelve la cuenta actual si encuentra una coincidencia
-         if ( cuentaActual.obtenerNumeroCuenta() == numeroCuenta )
-            return cuentaActual;
-      } // fin de for
+            cuentas[i] = new Cuenta(ncuenta, nip, sdisp, stotal);
+        }
 
-      return null; // si no se enontr� una cuenta que coincida, devuelve null
-   } // fin del m�todo obtenerCuenta
+    } // fin del constructor sin argumentos de BaseDatosBanco
 
-   // determina si el n�mero de cuenta y el NIP especificados por el usuario coinciden
-   // con los de una cuenta en la base de datos
-   public boolean autenticarUsuario( int numeroCuentaUsuario, int nipUsuario )
-   {
-      // trata de obtener la cuenta con el n�mero de cuenta
-      Cuenta cuentaUsuario = obtenerCuenta( numeroCuentaUsuario );
+    // obtiene el objeto Cuenta que contiene el n�mero de cuenta especificado
+    private Cuenta obtenerCuenta(int numeroCuenta) {
+        // itera a trav�s de cuentas, buscando el n�mero de cuenta que coincida
+        for (Cuenta cuentaActual : cuentas) {
+            // devuelve la cuenta actual si encuentra una coincidencia
+            if (cuentaActual.obtenerNumeroCuenta() == numeroCuenta) {
+                return cuentaActual;
+            }
+        } // fin de for
 
-      // si la cuenta existe, devuelve el resultado del m�todo validarNIP de Cuenta
-      if ( cuentaUsuario != null )
-         return cuentaUsuario.validarNIP( nipUsuario );
-      else
-         return false; // no se encontr� el n�mero de cuenta, por lo que devuelve false
-   } // fin del m�todo autenticarUsuario
+        return null; // si no se enontr� una cuenta que coincida, devuelve null
+    } // fin del m�todo obtenerCuenta
 
-   // devuelve el saldo disponible de la Cuenta con el n�mero de cuenta especificado
-   public double obtenerSaldoDisponible( int numeroCuentaUsuario )
-   {
-      return obtenerCuenta( numeroCuentaUsuario ).obtenerSaldoDisponible();
-   } // fin del m�todo obtenerSaldoDisponible
+    // determina si el n�mero de cuenta y el NIP especificados por el usuario coinciden
+    // con los de una cuenta en la base de datos
+    public boolean autenticarUsuario(int numeroCuentaUsuario, int nipUsuario) {
+        // trata de obtener la cuenta con el n�mero de cuenta
+        Cuenta cuentaUsuario = obtenerCuenta(numeroCuentaUsuario);
 
-   // devuelve el saldo total de la Cuenta con el n�mero de cuenta especificado
-   public double obtenerSaldoTotal( int numeroCuentaUsuario )
-   {
-      return obtenerCuenta( numeroCuentaUsuario ).obtenerSaldoTotal();
-   } // fin del m�todo obtenerSaldoTotal
+        // si la cuenta existe, devuelve el resultado del m�todo validarNIP de Cuenta
+        if (cuentaUsuario != null) {
+            return cuentaUsuario.validarNIP(nipUsuario);
+        } else {
+            return false; // no se encontr� el n�mero de cuenta, por lo que devuelve false
+        }
+    } // fin del m�todo autenticarUsuario
 
-   // abona un monto a la Cuenta a trav�s del n�mero de cuenta especificador
-   public void abonar( int numeroCuentaUsuario, double monto )
-   {
-      obtenerCuenta( numeroCuentaUsuario ).abonar( monto );
-   } // fin del m�todo abonar
+    // devuelve el saldo disponible de la Cuenta con el n�mero de cuenta especificado
+    public double obtenerSaldoDisponible(int numeroCuentaUsuario) {
+        return obtenerCuenta(numeroCuentaUsuario).obtenerSaldoDisponible();
+    } // fin del m�todo obtenerSaldoDisponible
 
-   // carga un monto a la Cuenta con el n�mero de cuenta especificado
-   public void cargar( int numeroCuentaUsuario, double monto )
-   {
-      obtenerCuenta( numeroCuentaUsuario ).cargar( monto );
-   } // fin del m�todo cargar
+    // devuelve el saldo total de la Cuenta con el n�mero de cuenta especificado
+    public double obtenerSaldoTotal(int numeroCuentaUsuario) {
+        return obtenerCuenta(numeroCuentaUsuario).obtenerSaldoTotal();
+    } // fin del m�todo obtenerSaldoTotal
+
+    // abona un monto a la Cuenta a trav�s del n�mero de cuenta especificador
+    public void abonar(int numeroCuentaUsuario, double monto) {
+        obtenerCuenta(numeroCuentaUsuario).abonar(monto);
+    } // fin del m�todo abonar
+
+    // carga un monto a la Cuenta con el n�mero de cuenta especificado
+    public void cargar(int numeroCuentaUsuario, double monto) {
+        obtenerCuenta(numeroCuentaUsuario).cargar(monto);
+    } // fin del m�todo cargar
 } // fin de la clase BaseDatosBanco
 
 

@@ -2,43 +2,36 @@
 // Representa una transacci�n de solicitud de saldo en el ATM
 package clases;
 
-public class SolicitudSaldo extends Transaccion
-{
+public class SolicitudSaldo extends Transaccion {
+
     private BaseDatosBanco baseDatosBanco = new BaseDatosBanco(); //  base de datos de informaci�n de las cuentas
     // constructor de SolicitudSaldo
-    public SolicitudSaldo( int numeroCuentaUsuario)
-    {
-        super( numeroCuentaUsuario);
+
+    public SolicitudSaldo(int numeroCuentaUsuario) {
+        super(numeroCuentaUsuario);
     } // fin del constructor de SolicitudSaldo
 
     // realiza la transacci�n
-    public String ejecutar()
-    {
+    public String ejecutar() {
         // obtiene referencias a la base de datos del banco y la pantalla
         //BaseDatosBanco baseDatosBanco =  new obtenerBaseDatosBanco(); Con esta linea no jala
-        BaseDatosBanco baseDatosBanco =  new BaseDatosBanco();
+        BaseDatosBanco baseDatosBanco = new BaseDatosBanco();
         double saldoDisponible = 0;
-        try
-        {
-            saldoDisponible = baseDatosBanco.obtenerSaldoDisponible( obtenerNumeroCuenta() );
-        }
-        catch(Exception e)
-        {
+        try {
+            saldoDisponible = baseDatosBanco.obtenerSaldoDisponible(obtenerNumeroCuenta());
+        } catch (Exception e) {
             System.out.print(e);
         }
         // obtiene el saldo disponible para la cuenta implicada
 
         // obtiene el saldo total para la cuenta implicada
         double saldoTotal = 0;
-        try
-        {
-             saldoTotal = baseDatosBanco.obtenerSaldoTotal( obtenerNumeroCuenta() );
-        }
-        catch(Exception e)
-        {
+        try {
+            saldoTotal = baseDatosBanco.obtenerSaldoTotal(obtenerNumeroCuenta());
+        } catch (Exception e) {
             System.out.print(e);
         }
-        
+
         return String.valueOf(saldoDisponible + "-" + saldoTotal);
     } // fin del m�todo ejecutar
 } // fin de la clase SolicitudSaldo

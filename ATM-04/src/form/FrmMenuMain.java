@@ -479,7 +479,8 @@ public class FrmMenuMain extends javax.swing.JFrame {
     {
         if (primerEjecucion)
         {
-            txtPantalla.setText("Menu Principal\n-----------\n1.- Ver saldo\n2.- Depositar\n3.- Retirar\n4.- Salir\nSeleccione una opción: ");
+            txtPantalla.setText("Menu Principal\n-----------\n1.- Ver saldo\n2."
+                    + "- Depositar\n3.- Retirar\n4.- Salir\nSeleccione una opción: ");
             primerEjecucion = false;
         }
         else
@@ -492,8 +493,9 @@ public class FrmMenuMain extends javax.swing.JFrame {
                     /*transaccionActual = crearTransaccion();*/
                     String result = realizarDeposito();
                     String parts[] = result.split("-");
-                    txtPantalla.setText("\nInformacion de saldo:" + "\n - Saldo disponible: " + parts[0] + "\n - Saldo total:          " +
-                            parts[1] + "\nPresiona una tecla para continuar.");
+                    txtPantalla.setText("\nInformacion de saldo:" + "\n - Saldo "
+                            + "disponible: " + parts[0] + "\n - Saldo total:          " 
+                            + parts[1] + "\nPresiona una tecla para continuar.");
                     primerEjecucion = true;
                     break;
                 case RETIRO:

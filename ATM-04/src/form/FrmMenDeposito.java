@@ -306,7 +306,7 @@ public class FrmMenDeposito extends javax.swing.JFrame {
         } catch (AWTException e) {
             System.out.print(e);
         }
-        
+
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
@@ -442,7 +442,6 @@ public class FrmMenDeposito extends javax.swing.JFrame {
     }//GEN-LAST:event_btn2ActionPerformed
 
     // </editor-fold> 
-    
     // <editor-fold defaultstate="collapsed" desc="IMAGENES DEPOSITO">  
     private void lblImagenDepositarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMouseEntered
         // TODO add your handling code here:
@@ -484,7 +483,9 @@ public class FrmMenDeposito extends javax.swing.JFrame {
     // </editor-fold> 
     public void btnAccion() {
         if (primerEjecucion) {
-            txtPantalla.setText("Escriba un monto (en centavos, ej. 20050 equivale a 200.50)\na depositar.\n(Si desea cancelar la operación escriba 0).\nMonto: ");
+            txtPantalla.setText("Escriba un monto (en centavos, ej. 20050 equivale"
+                    + " a 200.50)\na depositar.\n(Si desea cancelar la operación"
+                    + " escriba 0).\nMonto: ");
             primerEjecucion = false;
         } else {
             op = Integer.parseInt(input) / 100;
@@ -495,7 +496,8 @@ public class FrmMenDeposito extends javax.swing.JFrame {
                 this.setVisible(false);
             } else {
                 bloquearEnter = true;
-                txtPantalla.setText(txtPantalla.getText() + "\nInserte un sobre de: " + op + ". Si desea cancelar la operación\npresione enter.");
+                txtPantalla.setText(txtPantalla.getText() + "\nInserte un sobre de: "
+                        + op + ". Si desea cancelar la operación\npresione enter.");
                 tiempo = 0;
                 //Esta pantalla sirve para esperar que se inserte dinero
                 Timer timer1 = new Timer();
@@ -534,8 +536,7 @@ public class FrmMenDeposito extends javax.swing.JFrame {
         this.setVisible(false);
     }
     //////////////////////////////////////////////////////////////////////Fin a pseudocódigo
-    
-    
+
     /**
      * @param args the command line arguments
      */
