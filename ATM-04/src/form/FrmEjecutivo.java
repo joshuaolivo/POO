@@ -24,6 +24,8 @@ public class FrmEjecutivo extends javax.swing.JFrame {
     private boolean primerEjecucion = true;
     private String input = "";
     private int seleccion = 0, state = 0;
+    private int ncuenta, nip;
+    
     Icon imgIni = new ImageIcon(getClass().getResource("/imagenes/ranura.png"));
 
     public FrmEjecutivo() {
@@ -350,7 +352,7 @@ public class FrmEjecutivo extends javax.swing.JFrame {
                 break;
             case 2:
                 if (Integer.parseInt(input) != 0) {
-                    darDaja(input);
+                    darBaja(input);
                 } else {
                     primerEjecucion = true;
                     seleccion = 0;
@@ -571,7 +573,7 @@ public class FrmEjecutivo extends javax.swing.JFrame {
         input = "";
     }
 
-    private void darDaja(String noIndex) {
+    private void darBaja(String noIndex) {
         String act[] = archivos.getCuentas();
         boolean encontrado = false;
         int i = 0;
@@ -597,7 +599,6 @@ public class FrmEjecutivo extends javax.swing.JFrame {
         }
     }
 
-    private int ncuenta, nip;
 
     private void inNIP(String cuenta) {
         ncuenta = Integer.parseInt(cuenta);

@@ -10,11 +10,8 @@ import javax.swing.JTextArea;
 
 public class Teclado {
 
-    private Scanner entrada; // lee datos de la l�nea de comandos
-
     // el constructor sin argumentos inicializa el objeto Scanner
     public Teclado() {
-        entrada = new Scanner(System.in);
     } // fin del constructor sin argumentos de Teclado
     
     public void obtenerEntrada(JTextArea modificar, int tecla)

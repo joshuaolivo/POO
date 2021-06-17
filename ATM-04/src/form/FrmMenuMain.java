@@ -444,7 +444,7 @@ public class FrmMenuMain extends javax.swing.JFrame {
             {
                 case SOLICITUD_SALDO:
                     /*transaccionActual = crearTransaccion();*/
-                    String result = realizarDeposito();
+                    String result = verSaldo();
                     String parts[] = result.split("-");
                     pantalla.mostrarLineaMensaje(txtPantalla, "\nInformacion de saldo:" + "\n - Saldo "
                             + "disponible: " + parts[0] + "\n - Saldo total:          " 
@@ -481,7 +481,7 @@ public class FrmMenuMain extends javax.swing.JFrame {
         return temp; // devuelve el obejto recién creado
     } // fin del m�todo crearTransaccion
     
-    public String realizarDeposito()
+    public String verSaldo()
     {
         input = "";
         Transaccion temp = null;
