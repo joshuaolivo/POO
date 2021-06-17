@@ -1,7 +1,9 @@
 package form;
 
 import clases.CArchivo;
+import clases.Pantalla;
 import clases.SolicitudSaldo;
+import clases.Teclado;
 import clases.Transaccion;
 import static form.FrmMenuMain.numeroCuentaActual;
 import java.awt.AWTException;
@@ -16,6 +18,8 @@ import javax.swing.ImageIcon;
 public class FrmEjecutivo extends javax.swing.JFrame {
 
     //////////////////////////////////////////////////////////////////////Inicio a pseudocódigo
+    private Pantalla pantalla = new Pantalla();
+    private Teclado teclado = new Teclado();
     private CArchivo archivos = new CArchivo();
     private boolean primerEjecucion = true;
     private String input = "";
@@ -278,118 +282,55 @@ public class FrmEjecutivo extends javax.swing.JFrame {
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         // TODO add your handling code here:
         input = input + "3";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_3); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_3); // Simula soltar la tecla
-        } catch (AWTException e) {
-            System.out.print(e);
-        }
+        teclado.obtenerEntrada(txtPantalla, 3);
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         // TODO add your handling code here:
         input = input + "4";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_4); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_4); // Simula soltar la tecla
-        } catch (AWTException e) {
-            System.out.print(e);
-        }
+        teclado.obtenerEntrada(txtPantalla, 4);
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
         // TODO add your handling code here:
         input = input + "5";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_5); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_5); // Simula soltar la tecla
-        } catch (AWTException e) {
-            System.out.print(e);
-        }
+        teclado.obtenerEntrada(txtPantalla, 5);
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
         // TODO add your handling code here:
         input = input + "6";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_6); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_6); // Simula soltar la tecla
-        } catch (AWTException e) {
-            System.out.print(e);
-        }
+        teclado.obtenerEntrada(txtPantalla, 6);
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
         // TODO add your handling code here:
         input = input + "7";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_7); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_7); // Simula soltar la tecla
-        } catch (AWTException e) {
-            System.out.print(e);
-        }
+        teclado.obtenerEntrada(txtPantalla, 7);
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
         // TODO add your handling code here:
         input = input + "8";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_8); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_8); // Simula soltar la tecla
-        } catch (AWTException e) {
-            System.out.print(e);
-        }
+        teclado.obtenerEntrada(txtPantalla, 8);
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
         // TODO add your handling code here:
         input = input + "9";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_9); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_9); // Simula soltar la tecla
-        } catch (AWTException e) {
-            System.out.print(e);
-        }
+        teclado.obtenerEntrada(txtPantalla, 9);
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
         // TODO add your handling code here:
         input = input + "0";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_0); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_0); // Simula soltar la tecla
-        } catch (AWTException e) {
-            System.out.print(e);
-        }
+        teclado.obtenerEntrada(txtPantalla, 0);
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         // TODO add your handling code here:
         input = input + "1";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_1); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_1); // Simula soltar la tecla
-        } catch (AWTException e) {
-            System.out.print(e);
-        }
+        teclado.obtenerEntrada(txtPantalla, 1);
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
@@ -449,14 +390,7 @@ public class FrmEjecutivo extends javax.swing.JFrame {
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         // TODO add your handling code here:
         input = input + "2";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_2); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_2); // Simula soltar la tecla
-        } catch (AWTException e) {
-            System.out.print(e);
-        }
+        teclado.obtenerEntrada(txtPantalla, 2);
     }//GEN-LAST:event_btn2ActionPerformed
 // </editor-fold> 
 
@@ -509,7 +443,7 @@ public class FrmEjecutivo extends javax.swing.JFrame {
     //////////////////////////////////////////////////////////////////////Inicio a pseudocódigo
     public void btnAccion() {
         if (primerEjecucion) {
-            txtPantalla.setText("Menú de ejecutivo\n-----------\n1.- Consultar "
+            pantalla.mostrarLineaMensaje(txtPantalla, "Menú de ejecutivo\n-----------\n1.- Consultar "
                     + "cuentas existentes.\n2.- Depositos pendientes de "
                     + "confirmación.\n3.- Dar de baja una cuenta.\n4.- Crear una cuenta."
                     + "\n5.- Salir del menu.\nSeleccione una opción: ");
@@ -549,57 +483,57 @@ public class FrmEjecutivo extends javax.swing.JFrame {
         int i = 1;
         switch (transaccion) {
             case 1:
-                txtPantalla.setText("Cuentas registradas:\nNo.Cuenta__|_NIP"
+                pantalla.mostrarLineaMensaje(txtPantalla, "Cuentas registradas:\nNo.Cuenta__|_NIP"
                         + "________|_Saldo_disponible_|_Saldo_total\n");
                 for (String cuenta : act) {
                     String div[] = cuenta.split(",");
-                    txtPantalla.setText(txtPantalla.getText() + div[0] + "      "
+                    pantalla.mostrarMensaje(txtPantalla , div[0] + "      "
                             + "      | " + div[1] + "            | " + div[2]
                             + "                     | " + div[3] + "\n");
                 }
-                txtPantalla.setText(txtPantalla.getText() + "Presione 'Aceptar "
+                pantalla.mostrarMensaje(txtPantalla, "Presione 'Enter "
                         + "para continuar'");
                 primerEjecucion = true;
                 input = "";
                 break;
             case 2:
-                txtPantalla.setText("Cuentas con confirmación de depósito "
+                pantalla.mostrarLineaMensaje(txtPantalla, "Cuentas con confirmación de depósito "
                         + "pendiente:\n  |No.Cuenta__|_NIP________|_Saldo_disponible"
                         + "_|_Saldo_total\n");
                 for (String cuenta : act) {
                     String div[] = cuenta.split(",");
                     if (!div[2].equals(div[3])) {
-                        txtPantalla.setText(txtPantalla.getText() + i + "   "
+                        pantalla.mostrarMensaje(txtPantalla, i + "   "
                                 + div[0] + "            | " + div[1] + "            | "
                                 + div[2] + "                     | " + div[3] + "\n");
                         i++;
                     }
                 }
-                txtPantalla.setText(txtPantalla.getText() + "Escriba 0 para "
+                pantalla.mostrarMensaje(txtPantalla, "Escriba 0 para "
                         + "cancelar, o escriba el índice de alguna\ncuenta para "
                         + "confirmar el depósito: ");
                 input = "";
                 seleccion = 1;
                 break;
             case 3:
-                txtPantalla.setText("Seleccione la cuenta a dar de baja:\nNo se "
+                pantalla.mostrarLineaMensaje(txtPantalla, "Seleccione la cuenta a dar de baja:\nNo se "
                         + "podrán deshacer los cambios.\n  |No.Cuenta__|_NIP____"
                         + "____|_Saldo_disponible_|_Saldo_total\n");
                 for (String cuenta : act) {
                     String div[] = cuenta.split(",");
-                    txtPantalla.setText(txtPantalla.getText() + i + "   "
+                    pantalla.mostrarMensaje(txtPantalla, i + "   "
                             + div[0] + "            | " + div[1] + "            | "
                             + div[2] + "                     | " + div[3] + "\n");
                     i++;
                 }
-                txtPantalla.setText(txtPantalla.getText() + "Escriba 0 para "
+                pantalla.mostrarMensaje(txtPantalla, "Escriba 0 para "
                         + "cancelar, o escriba el índice de alguna\ncuenta para "
                         + "confirmar la operación: ");
                 input = "";
                 seleccion = 2;
                 break;
             case 4:
-                txtPantalla.setText("Crear nueva cuenta\nSi desea cancelar la "
+                pantalla.mostrarLineaMensaje(txtPantalla, "Crear nueva cuenta\nSi desea cancelar la "
                         + "operación, escriba 0.\nIntroduce el número de cuenta: ");
                 state = 1;
                 seleccion = 3;
@@ -667,7 +601,7 @@ public class FrmEjecutivo extends javax.swing.JFrame {
 
     private void inNIP(String cuenta) {
         ncuenta = Integer.parseInt(cuenta);
-        txtPantalla.setText(txtPantalla.getText() + "\nIntroduce el NIP: ");
+        pantalla.mostrarMensaje(txtPantalla, "\nIntroduce el NIP: ");
         input = "";
         seleccion = 4;
     }
