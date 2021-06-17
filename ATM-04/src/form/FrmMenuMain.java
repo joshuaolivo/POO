@@ -24,6 +24,7 @@ import javax.swing.JOptionPane;
  */
 public class FrmMenuMain extends javax.swing.JFrame {
 
+    //////////////////////////////////////////////////////////////////////Inicio a pseudocódigo
     Transaccion transaccionActual = null;
     
     private boolean primerEjecucion = true;
@@ -51,6 +52,8 @@ public class FrmMenuMain extends javax.swing.JFrame {
         btnAccion();
     }
 
+    //////////////////////////////////////////////////////////////////////Fin a pseudocódigo
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -246,20 +249,6 @@ public class FrmMenuMain extends javax.swing.JFrame {
         lblImgRetirar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImgRetirar.setToolTipText("");
         lblImgRetirar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        lblImgRetirar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblImgRetirarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblImgRetirarMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lblImgRetirarMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                lblImgRetirarMouseReleased(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -268,20 +257,6 @@ public class FrmMenuMain extends javax.swing.JFrame {
 
         lblImagenDepositar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImagenDepositar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        lblImagenDepositar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblImagenDepositarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblImagenDepositarMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lblImagenDepositarMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                lblImagenDepositarMouseReleased(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -324,6 +299,7 @@ public class FrmMenuMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
+    //////////////////////////////////////////////////////////////////////Inicio a pseudocódigo
     // <editor-fold defaultstate="collapsed" desc="TECLADO">      
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         // TODO add your handling code here:
@@ -441,57 +417,9 @@ public class FrmMenuMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btn2ActionPerformed
 
     // </editor-fold> 
+    //////////////////////////////////////////////////////////////////////Fin a pseudocódigo
+     
     
-    
-    // <editor-fold defaultstate="collapsed" desc="IMAGENES RETIRO">      
-    private void lblImgRetirarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImgRetirarMouseEntered
-        // TODO add your handling code here:
-        /*Icon imgMouseIn = new ImageIcon(getClass().getResource("/imagenes/ranuraCDinero.png"));
-        lblImgRetirar.setIcon(imgMouseIn);*/
-    }//GEN-LAST:event_lblImgRetirarMouseEntered
-
-    private void lblImgRetirarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImgRetirarMouseExited
-        // TODO add your handling code here:
-        /*Icon imgMouseOut = new ImageIcon(getClass().getResource("/imagenes/ranura.png"));
-        lblImgRetirar.setIcon(imgMouseOut);*/
-    }//GEN-LAST:event_lblImgRetirarMouseExited
-
-    private void lblImgRetirarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImgRetirarMousePressed
-        // TODO add your handling code here:
-        /*Icon imgMouseClick = new ImageIcon(getClass().getResource("/imagenes/ranuraCDineroOut.png"));
-        lblImgRetirar.setIcon(imgMouseClick);*/
-    }//GEN-LAST:event_lblImgRetirarMousePressed
-
-    private void lblImgRetirarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImgRetirarMouseReleased
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_lblImgRetirarMouseReleased
-    // </editor-fold> 
-    
-    
-    // <editor-fold defaultstate="collapsed" desc="IMAGENES DEPOSITO">   
-    private void lblImagenDepositarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMouseEntered
-        // TODO add your handling code here:
-        /*Icon imgMouseOut = new ImageIcon(getClass().getResource("/imagenes/ranuraCDinero.png"));
-        lblImagenDepositar.setIcon(imgMouseOut);*/
-    }//GEN-LAST:event_lblImagenDepositarMouseEntered
-
-    private void lblImagenDepositarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMouseExited
-        // TODO add your handling code here:
-        /*Icon imgMouseOut = new ImageIcon(getClass().getResource("/imagenes/ranura.png"));
-        lblImagenDepositar.setIcon(imgMouseOut);*/
-    }//GEN-LAST:event_lblImagenDepositarMouseExited
-
-    private void lblImagenDepositarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMousePressed
-        // TODO add your handling code here:
-        /*Icon imgMouseClick = new ImageIcon(getClass().getResource("/imagenes/ranuraCDineroIn.png"));
-        lblImagenDepositar.setIcon(imgMouseClick);*/
-    }//GEN-LAST:event_lblImagenDepositarMousePressed
-
-    private void lblImagenDepositarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblImagenDepositarMouseReleased
-
     private void txtPantallaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPantallaKeyTyped
         // TODO add your handling code here:
         char valid = evt.getKeyChar();
@@ -506,8 +434,6 @@ public class FrmMenuMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtPantallaKeyTyped
                       
-    // </editor-fold> 
-    
     
     /**
      * @param args the command line arguments
@@ -545,6 +471,8 @@ public class FrmMenuMain extends javax.swing.JFrame {
         });
     }
 
+    
+    //////////////////////////////////////////////////////////////////////Inicio a pseudocódigo
     ///////////////////////////////////////////////////
     
     public void btnAccion()
@@ -608,6 +536,7 @@ public class FrmMenuMain extends javax.swing.JFrame {
     }
     
     ///////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////Fin a pseudocódigo
     
 
     

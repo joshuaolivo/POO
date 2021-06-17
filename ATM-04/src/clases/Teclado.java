@@ -2,6 +2,9 @@
 // Representa el teclado del ATM
 package clases;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.util.Scanner; // el programa usa a Scanner para obtener la entrada del usuario
 
 public class Teclado

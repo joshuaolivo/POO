@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package form;
 
 //import static form.FrmMenuMain.numeroCuentaActual;
@@ -21,12 +16,9 @@ import javax.swing.JOptionPane;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/**
- *
- * @author elagu
- */
 public class FrmMenRetiro extends javax.swing.JFrame {
 
+    //////////////////////////////////////////////////////////////////////Inicio a pseudocódigo
     private boolean primerEjecucion = true, otraCantidad = false, bloquearEnter = false;
     private String input = "";
     private int numeroCuentaActual, tiempo;
@@ -34,9 +26,7 @@ public class FrmMenRetiro extends javax.swing.JFrame {
     private DispensadorEfectivo dispensadorEfectivo; // dispensador de efectivo del ATM
     private BaseDatosBanco baseDatosBanco; //  base de datos de informaci�n de las cuentas
     Icon imgIni = new ImageIcon(getClass().getResource("/imagenes/ranura.png"));
-    /**
-     * Creates new form FrmMenRetiro
-     */
+    
     public FrmMenRetiro() {
         initComponents();
         setLocationRelativeTo(null);
@@ -47,6 +37,7 @@ public class FrmMenRetiro extends javax.swing.JFrame {
         numeroCuentaActual = atm.numeroCuentaActual;
         btnAccion();
     }
+    //////////////////////////////////////////////////////////////////////Fin a pseudocódigo
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -305,6 +296,7 @@ public class FrmMenRetiro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //////////////////////////////////////////////////////////////////////Inicio a pseudocódigo
     // <editor-fold defaultstate="collapsed" desc="BOTONES">    
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         // TODO add your handling code here:
@@ -462,7 +454,7 @@ public class FrmMenRetiro extends javax.swing.JFrame {
     }//GEN-LAST:event_lblImgRetirarMouseReleased
 
 // </editor-fold> 
-    
+    //////////////////////////////////////////////////////////////////////Fin a pseudocódigo
     
     private void txtPantallaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPantallaKeyTyped
         // TODO add your handling code here:
@@ -478,7 +470,7 @@ public class FrmMenRetiro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtPantallaKeyTyped
 
-    
+    //////////////////////////////////////////////////////////////////////Inicio a pseudocódigo
     public void btnAccion()
     {
         if (primerEjecucion)
@@ -581,13 +573,7 @@ public class FrmMenRetiro extends javax.swing.JFrame {
         men.setVisible(true);
         this.setVisible(false);
     }
-    /*
-    public void realizarDeposito()
-    {
-        input = "";
-        Transaccion temp = null;
-        String result_saldo = temp.ejecutar();
-    }*/
+    //////////////////////////////////////////////////////////////////////Fin a pseudocódigo
     
     /**
      * @param args the command line arguments
