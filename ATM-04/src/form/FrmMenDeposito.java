@@ -426,30 +426,7 @@ public class FrmMenDeposito extends javax.swing.JFrame {
         }
         else
         {
-            btnEnter.enable(false);
-            tiempo = 0;
-            //Esta pantalla sirve para esperar que se inserte dinero
-            Timer timer1 = new Timer();
-            TimerTask task1 = new TimerTask()
-            {
-                @Override
-                public void run()
-                {
-                    tiempo = tiempo + 1000;
-                    if(tiempo == -1000)
-                    {
-                        timer1.cancel();
-                        realizarDeposito();
-                        lblImagenDepositar.setIcon(imgIni);
-                    }
-                    else if (tiempo >= 120000)
-                    {
-                        timer1.cancel();
-                        cancelarTransaccion();
-                    }
-                }
-            };
-            timer1.schedule(task1, 0, 1000);
+            cancelarTransaccion();
         }
     }//GEN-LAST:event_btnEnterActionPerformed
 
@@ -543,6 +520,29 @@ public class FrmMenDeposito extends javax.swing.JFrame {
             {
                 bloquearEnter = true;
                 txtPantalla.setText(txtPantalla.getText() + "\nInserte un sobre de: " + op + ". Si desea cancelar la operación\npresione enter.");
+                tiempo = 0;
+                //Esta pantalla sirve para esperar que se inserte dinero
+                Timer timer1 = new Timer();
+                TimerTask task1 = new TimerTask()
+                {
+                    @Override
+                    public void run()
+                    {
+                        tiempo = tiempo + 1000;
+                        if(tiempo == -1000)
+                        {
+                            timer1.cancel();
+                            realizarDeposito();
+                            lblImagenDepositar.setIcon(imgIni);
+                        }
+                        else if (tiempo >= 120000)
+                        {
+                            timer1.cancel();
+                            cancelarTransaccion();
+                        }
+                    }
+                };
+                timer1.schedule(task1, 0, 1000);
             }
         }
     }

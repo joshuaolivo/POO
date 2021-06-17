@@ -564,7 +564,9 @@ public class FrmMenRetiro extends javax.swing.JFrame {
         
         if (result.contains("monto menor."))
         {
+            primerEjecucion = true;
             otraCantidad = false;
+            btnAccion();
             input = "";
         }
         else
