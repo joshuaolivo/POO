@@ -18,6 +18,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
@@ -25,9 +27,9 @@ import javax.swing.JOptionPane;
  */
 public class FrmMenRetiro extends javax.swing.JFrame {
 
-    private boolean primerEjecucion = true, otraCantidad = false;
+    private boolean primerEjecucion = true, otraCantidad = false, bloquearEnter = false;
     private String input = "";
-    private int numeroCuentaActual;
+    private int numeroCuentaActual, tiempo;
     public static int op;
     private DispensadorEfectivo dispensadorEfectivo; // dispensador de efectivo del ATM
     private BaseDatosBanco baseDatosBanco; //  base de datos de informaci�n de las cuentas
@@ -414,13 +416,16 @@ public class FrmMenRetiro extends javax.swing.JFrame {
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
         // TODO add your handling code here:
-        try {
+        /*try {
             Robot robot = new Robot();
             txtPantalla.requestFocus();
             robot.keyPress(KeyEvent.VK_ENTER); // Simula presionar la tecla
             robot.keyRelease(KeyEvent.VK_ENTER); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
-        btnAccion();
+        } catch (AWTException e) {System.out.print(e);}*/
+        if (!bloquearEnter)
+        {
+            btnAccion();
+        }
     }//GEN-LAST:event_btnEnterActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
@@ -457,6 +462,12 @@ public class FrmMenRetiro extends javax.swing.JFrame {
 
     private void lblImgRetirarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImgRetirarMouseReleased
         // TODO add your handling code here:
+        Icon imgMouseIn = new ImageIcon(getClass().getResource("/imagenes/ranuraCDinero.png"));
+        lblImgRetirar.setIcon(imgMouseIn);
+        if (bloquearEnter)
+        {
+            tiempo = 3000000;
+        }
     }//GEN-LAST:event_lblImgRetirarMouseReleased
 
     // </editor-fold> 
@@ -548,7 +559,7 @@ public class FrmMenRetiro extends javax.swing.JFrame {
         Transaccion temp = null;
         temp = new Retiro( numeroCuentaActual, baseDatosBanco);
         String result = temp.ejecutar();
-        System.out.print(result);
+        //System.out.print(result);
         txtPantalla.setText(txtPantalla.getText() + result);
         
         if (result.contains("monto menor."))
@@ -558,19 +569,42 @@ public class FrmMenRetiro extends javax.swing.JFrame {
         }
         else
         {
-            FrmMenuMain men = new FrmMenuMain();
-            men.setVisible(true);
-            this.setVisible(false);
+            txtPantalla.setText(txtPantalla.getText() + "\nRetire el dinero de la ranura por favor.");
+            bloquearEnter = true;
+            
+            tiempo = 0;
+            //Esta pantalla sirve para esperar que se retire dinero
+            Timer timer = new Timer();
+            TimerTask task = new TimerTask()
+            {
+                @Override
+                public void run()
+                {
+                    tiempo = tiempo + 1000;
+                    if (tiempo >= 3000000)
+                    {
+                        timer.cancel();
+                        terminarRetiro();
+                    }
+                }
+            };
+            timer.schedule(task, 0, 1000);
         }
     }
     
-    
+    public void terminarRetiro()
+    {
+        FrmMenuMain men = new FrmMenuMain();
+        men.setVisible(true);
+        this.setVisible(false);
+    }
+    /*
     public void realizarDeposito()
     {
         input = "";
         Transaccion temp = null;
         String result_saldo = temp.ejecutar();
-    }
+    }*/
     
     /**
      * @param args the command line arguments

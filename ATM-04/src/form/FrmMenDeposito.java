@@ -17,6 +17,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
@@ -26,7 +28,7 @@ public class FrmMenDeposito extends javax.swing.JFrame {
 
     private boolean primerEjecucion = true, bloquearEnter = false;
     private String input = "";
-    private int numeroCuentaActual;
+    private int numeroCuentaActual, tiempo;
     public static float op;
     private BaseDatosBanco baseDatosBanco; //  base de datos de informaci�n de las cuentas
     Icon imgIni = new ImageIcon(getClass().getResource("/imagenes/ranura.png"));
@@ -412,19 +414,42 @@ public class FrmMenDeposito extends javax.swing.JFrame {
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
         // TODO add your handling code here:
-        try {
+        /*try {
             Robot robot = new Robot();
             txtPantalla.requestFocus();
             robot.keyPress(KeyEvent.VK_ENTER); // Simula presionar la tecla
             robot.keyRelease(KeyEvent.VK_ENTER); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        } catch (AWTException e) {System.out.print(e);}*/
         if(!bloquearEnter)
         {
             btnAccion();
         }
         else
         {
-            realizarDeposito();
+            btnEnter.enable(false);
+            tiempo = 0;
+            //Esta pantalla sirve para esperar que se inserte dinero
+            Timer timer1 = new Timer();
+            TimerTask task1 = new TimerTask()
+            {
+                @Override
+                public void run()
+                {
+                    tiempo = tiempo + 1000;
+                    if(tiempo == -1000)
+                    {
+                        timer1.cancel();
+                        realizarDeposito();
+                        lblImagenDepositar.setIcon(imgIni);
+                    }
+                    else if (tiempo >= 120000)
+                    {
+                        timer1.cancel();
+                        cancelarTransaccion();
+                    }
+                }
+            };
+            timer1.schedule(task1, 0, 1000);
         }
     }//GEN-LAST:event_btnEnterActionPerformed
 
@@ -488,6 +513,12 @@ public class FrmMenDeposito extends javax.swing.JFrame {
 
     private void lblImagenDepositarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMouseReleased
         // TODO add your handling code here:
+        Icon imgMouseOut = new ImageIcon(getClass().getResource("/imagenes/ranuraCDinero.png"));
+        lblImagenDepositar.setIcon(imgMouseOut);
+        if(bloquearEnter)
+        {
+            tiempo = -2000;
+        }
     }//GEN-LAST:event_lblImagenDepositarMouseReleased
     // </editor-fold> 
     
@@ -522,6 +553,13 @@ public class FrmMenDeposito extends javax.swing.JFrame {
         Transaccion temp = null;
         temp = new Deposito( numeroCuentaActual, baseDatosBanco);
         String result = temp.ejecutar();
+        FrmMenuMain men = new FrmMenuMain();
+        men.setVisible(true);
+        this.setVisible(false);
+    }
+    
+    private void cancelarTransaccion()
+    {
         FrmMenuMain men = new FrmMenuMain();
         men.setVisible(true);
         this.setVisible(false);
