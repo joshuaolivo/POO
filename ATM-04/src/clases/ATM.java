@@ -3,16 +3,6 @@
 
 package clases;
 
-import clases.BaseDatosBanco;
-import clases.Deposito;
-import clases.DispensadorEfectivo;
-import clases.Pantalla;
-import clases.RanuraDeposito;
-import clases.Retiro;
-import clases.SolicitudSaldo;
-import clases.Teclado;
-import clases.Transaccion;
-
 public class ATM 
 {
    private boolean usuarioAutenticado; // indica si el usuario es autenticado
@@ -45,8 +35,8 @@ public class ATM
    public void run()
    {
       // da la bienvenida al usuario y lo autentica; realiza transacciones
-//      while ( true )
-//      {
+      while ( true )
+      {
          // itera mientras el usuario no haya sido autenticado
          while ( !usuarioAutenticado ) 
          {
@@ -59,7 +49,7 @@ public class ATM
          numeroCuentaActual = 0; // restablece antes de la siguiente sesi�n con el ATM 
          pantalla.mostrarLineaMensaje( "\nGracias! Adios!" );
       } // fin de while   
-//   } // fin del m�todo run
+   } // fin del m�todo run
 
    // trata de autenticar al usuario en la base de datos
    private void autenticarUsuario() 
@@ -143,6 +133,7 @@ public class ATM
       // determina qu� tipo de Transaccion crear     
       switch ( tipo )
       {
+         /*
          case SOLICITUD_SALDO: // crea una nueva transacci�n SolicitudSaldo
             temp = new SolicitudSaldo( 
                numeroCuentaActual, pantalla, baseDatosBanco );
@@ -154,7 +145,7 @@ public class ATM
          case DEPOSITO: // crea una nueva transacci�n Deposito
             temp = new Deposito( numeroCuentaActual, pantalla, 
                baseDatosBanco, teclado, ranuraDeposito );
-            break;
+            break;*/
       } // fin de switch
 
       return temp; // devuelve el obejto reci�n creado

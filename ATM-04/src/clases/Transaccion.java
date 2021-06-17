@@ -9,12 +9,9 @@ public abstract class Transaccion
    private BaseDatosBanco baseDatosBanco; // base de datos de informaci�n de cuentas
 
    // el constructor de Transaccion es invocado por las subclases mediante super()
-   public Transaccion( int numeroCuentaUsuario, Pantalla pantallaATM, 
-      BaseDatosBanco baseDatosBancoATM )
+   public Transaccion( int numeroCuentaUsuario)
    {
       numeroCuenta = numeroCuentaUsuario;
-      pantalla = pantallaATM;
-      baseDatosBanco = baseDatosBancoATM;
    } // fin del constructor de Transaccion
 
    // devuelve el n�mero de cuenta 
@@ -36,7 +33,7 @@ public abstract class Transaccion
    } // fin del m�todo obtenerBaseDatosBanco
 
    // realiza la transacci�n (cada subclase sobrescribe este m�todo)
-   abstract public void ejecutar();
+   abstract public String ejecutar();
 } // fin de la clase Transaccion
 
 

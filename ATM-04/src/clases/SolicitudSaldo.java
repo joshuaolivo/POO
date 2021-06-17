@@ -4,36 +4,43 @@ package clases;
 
 public class SolicitudSaldo extends Transaccion
 {
-   // constructor de SolicitudSaldo
-   public SolicitudSaldo( int numeroCuentaUsuario, Pantalla pantallaATM, 
-      BaseDatosBanco baseDatosBanco )
-   {
-      super( numeroCuentaUsuario, pantallaATM, baseDatosBanco );
-   } // fin del constructor de SolicitudSaldo
+    private BaseDatosBanco baseDatosBanco = new BaseDatosBanco(); //  base de datos de informaci�n de las cuentas
+    // constructor de SolicitudSaldo
+    public SolicitudSaldo( int numeroCuentaUsuario)
+    {
+        super( numeroCuentaUsuario);
+    } // fin del constructor de SolicitudSaldo
 
-   // realiza la transacci�n
-   public void ejecutar()
-   {
-      // obtiene referencias a la base de datos del banco y la pantalla
-      BaseDatosBanco baseDatosBanco = obtenerBaseDatosBanco();
-      Pantalla pantalla = obtenerPantalla();
+    // realiza la transacci�n
+    public String ejecutar()
+    {
+        // obtiene referencias a la base de datos del banco y la pantalla
+        //BaseDatosBanco baseDatosBanco =  new obtenerBaseDatosBanco(); Con esta linea no jala
+        BaseDatosBanco baseDatosBanco =  new BaseDatosBanco();
+        double saldoDisponible = 0;
+        try
+        {
+            saldoDisponible = baseDatosBanco.obtenerSaldoDisponible( obtenerNumeroCuenta() );
+        }
+        catch(Exception e)
+        {
+            System.out.print(e);
+        }
+        // obtiene el saldo disponible para la cuenta implicada
 
-      // obtiene el saldo disponible para la cuenta implicada
-      double saldoDisponible = 
-         baseDatosBanco.obtenerSaldoDisponible( obtenerNumeroCuenta() );
-
-      // obtiene el saldo total para la cuenta implicada
-      double saldoTotal = 
-         baseDatosBanco.obtenerSaldoTotal( obtenerNumeroCuenta() );
-      
-      // muestra la informaci�n del saldo en la pantalla
-      pantalla.mostrarLineaMensaje( "\nInformacion de saldo:" );
-      pantalla.mostrarMensaje( " - Saldo disponible: " ); 
-      pantalla.mostrarMontoDolares( saldoDisponible );
-      pantalla.mostrarMensaje( "\n - Saldo total:     " );
-      pantalla.mostrarMontoDolares( saldoTotal );
-      pantalla.mostrarLineaMensaje( "" );
-   } // fin del m�todo ejecutar
+        // obtiene el saldo total para la cuenta implicada
+        double saldoTotal = 0;
+        try
+        {
+             saldoTotal = baseDatosBanco.obtenerSaldoTotal( obtenerNumeroCuenta() );
+        }
+        catch(Exception e)
+        {
+            System.out.print(e);
+        }
+        
+        return String.valueOf(saldoDisponible + "-" + saldoTotal);
+    } // fin del m�todo ejecutar
 } // fin de la clase SolicitudSaldo
 
 

@@ -5,21 +5,23 @@
  */
 package form;
 import clases.ATM;
-import clases.Pantalla;
-import java.awt.Dimension;
+import clases.BaseDatosBanco;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 /**
  *
  * @author elagu
  */
-public class FrmAtm extends javax.swing.JFrame {
+public class FrmAtm extends javax.swing.JFrame{
    
-    //CMensajes men = new CMensajes();
-    ATM atm = new ATM();
+    private boolean cuentaAutenticada = false, cuentaIntroducida = false, nipIntroducido = false, primerEjecucion = true; // indica si el usuario es autenticado
+    public static int numeroCuentaActual;
+    private int nipActual; // current user's account number
+    private BaseDatosBanco baseDatosBanco = new BaseDatosBanco(); //  base de datos de informaci�n de las cuentas
     private String input = "";
     Icon imgIni = new ImageIcon(getClass().getResource("/imagenes/ranura.png"));
    
@@ -29,18 +31,13 @@ public class FrmAtm extends javax.swing.JFrame {
         //Carga imágenes
         lblImgRetirar.setIcon(imgIni);
         lblImagenDepositar.setIcon(imgIni);
-        this.setMinimumSize(new Dimension(500,450));
-        Pantalla pantalla = new Pantalla();
-        txtPantalla.setText(pantalla.Bienvenida());
-        
-       
+        btnAccion();
     }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtPantalla = new javax.swing.JTextArea();
         pnlBotones = new javax.swing.JPanel();
@@ -61,22 +58,20 @@ public class FrmAtm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnEjecutivo = new javax.swing.JButton();
 
-        jButton1.setText("jButton1");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ATM-E5");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
-        getContentPane().setLayout(null);
 
-        txtPantalla.setEditable(false);
         txtPantalla.setColumns(20);
         txtPantalla.setFont(new java.awt.Font("Century Gothic", 0, 13)); // NOI18N
         txtPantalla.setRows(5);
+        txtPantalla.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPantallaKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtPantalla);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(10, 11, 471, 151);
 
         btn3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         btn3.setText("3");
@@ -150,7 +145,7 @@ public class FrmAtm extends javax.swing.JFrame {
             }
         });
 
-        btnEnter.setBackground(new java.awt.Color(102, 255, 102));
+        btnEnter.setBackground(new java.awt.Color(0, 204, 51));
         btnEnter.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         btnEnter.setText("Enter");
         btnEnter.addActionListener(new java.awt.event.ActionListener() {
@@ -223,9 +218,6 @@ public class FrmAtm extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(pnlBotones);
-        pnlBotones.setBounds(10, 173, 164, 172);
-
         lblImgRetirar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImgRetirar.setToolTipText("");
         lblImgRetirar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -243,8 +235,6 @@ public class FrmAtm extends javax.swing.JFrame {
                 lblImgRetirarMouseReleased(evt);
             }
         });
-        getContentPane().add(lblImgRetirar);
-        lblImgRetirar.setBounds(178, 194, 303, 60);
 
         lblImagenDepositar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImagenDepositar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -262,107 +252,220 @@ public class FrmAtm extends javax.swing.JFrame {
                 lblImagenDepositarMouseReleased(evt);
             }
         });
-        getContentPane().add(lblImagenDepositar);
-        lblImagenDepositar.setBounds(178, 281, 303, 60);
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Tome aquí el efectivo");
         jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(178, 173, 303, 15);
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Inserte aquí el efectivo");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(178, 260, 303, 15);
 
-        btnEjecutivo.setBackground(new java.awt.Color(51, 153, 255));
-        btnEjecutivo.setForeground(new java.awt.Color(255, 255, 255));
-        btnEjecutivo.setText("Ejecutivo de cuenta");
-        getContentPane().add(btnEjecutivo);
-        btnEjecutivo.setBounds(20, 350, 460, 40);
+        btnEjecutivo.setBackground(new java.awt.Color(75, 175, 232));
+        btnEjecutivo.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        btnEjecutivo.setText("Ejecutivo");
+        btnEjecutivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEjecutivoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEjecutivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pnlBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(lblImagenDepositar, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblImgRetirar, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(pnlBotones, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblImgRetirar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblImagenDepositar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)))
+                .addComponent(btnEjecutivo, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    // <editor-fold defaultstate="collapsed" desc="TECLADO">    
     //Botones TECLADO
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         // TODO add your handling code here:
             input = input + "1";
+            try {
+                Robot robot = new Robot();
+                txtPantalla.requestFocus();
+                robot.keyPress(KeyEvent.VK_1); // Simula presionar la tecla
+                robot.keyRelease(KeyEvent.VK_1); // Simula soltar la tecla
+            } catch (AWTException e) {System.out.print(e);}
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         // TODO add your handling code here:
             input = input + "2";
+            try {
+                Robot robot = new Robot();
+                txtPantalla.requestFocus();
+                robot.keyPress(KeyEvent.VK_2); // Simula presionar la tecla
+                robot.keyRelease(KeyEvent.VK_2); // Simula soltar la tecla
+            } catch (AWTException e) {System.out.print(e);}
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         // TODO add your handling code here:
             input = input + "3";
+            try {
+                Robot robot = new Robot();
+                txtPantalla.requestFocus();
+                robot.keyPress(KeyEvent.VK_3); // Simula presionar la tecla
+                robot.keyRelease(KeyEvent.VK_3); // Simula soltar la tecla
+            } catch (AWTException e) {System.out.print(e);}
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         // TODO add your handling code here:
             input = input + "4";
+            try {
+                Robot robot = new Robot();
+                txtPantalla.requestFocus();
+                robot.keyPress(KeyEvent.VK_4); // Simula presionar la tecla
+                robot.keyRelease(KeyEvent.VK_4); // Simula soltar la tecla
+            } catch (AWTException e) {System.out.print(e);}
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
         // TODO add your handling code here:
             input = input + "5";
+            try {
+                Robot robot = new Robot();
+                txtPantalla.requestFocus();
+                robot.keyPress(KeyEvent.VK_5); // Simula presionar la tecla
+                robot.keyRelease(KeyEvent.VK_5); // Simula soltar la tecla
+            } catch (AWTException e) {System.out.print(e);}
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
         // TODO add your handling code here:
             input = input + "6";
+            try {
+                Robot robot = new Robot();
+                txtPantalla.requestFocus();
+                robot.keyPress(KeyEvent.VK_6); // Simula presionar la tecla
+                robot.keyRelease(KeyEvent.VK_6); // Simula soltar la tecla
+            } catch (AWTException e) {System.out.print(e);}
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
         // TODO add your handling code here:
             input = input + "7";
+            try {
+                Robot robot = new Robot();
+                txtPantalla.requestFocus();
+                robot.keyPress(KeyEvent.VK_7); // Simula presionar la tecla
+                robot.keyRelease(KeyEvent.VK_7); // Simula soltar la tecla
+            } catch (AWTException e) {System.out.print(e);}
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
         // TODO add your handling code here:
             input = input + "8";
+            try {
+                Robot robot = new Robot();
+                txtPantalla.requestFocus();
+                robot.keyPress(KeyEvent.VK_8); // Simula presionar la tecla
+                robot.keyRelease(KeyEvent.VK_8); // Simula soltar la tecla
+            } catch (AWTException e) {System.out.print(e);}
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
         // TODO add your handling code here:
             input = input + "9";
+            try {
+                Robot robot = new Robot();
+                txtPantalla.requestFocus();
+                robot.keyPress(KeyEvent.VK_9); // Simula presionar la tecla
+                robot.keyRelease(KeyEvent.VK_9); // Simula soltar la tecla
+            } catch (AWTException e) {System.out.print(e);}
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
         // TODO add your handling code here:
             input = input + "0";
+            try {
+                Robot robot = new Robot();
+                txtPantalla.requestFocus();
+                robot.keyPress(KeyEvent.VK_0); // Simula presionar la tecla
+                robot.keyRelease(KeyEvent.VK_0); // Simula soltar la tecla
+            } catch (AWTException e) {System.out.print(e);}
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
         // TODO add your handling code here:
-        
+        /*
+        try {
+            Robot robot = new Robot();
+            txtPantalla.requestFocus();
+            robot.keyPress(KeyEvent.VK_ENTER); // Simula presionar la tecla
+            robot.keyRelease(KeyEvent.VK_ENTER); // Simula soltar la tecla
+        } catch (AWTException e) {System.out.print(e);}*/
+        btnAccion();
     }//GEN-LAST:event_btnEnterActionPerformed
 
     //Botones TECLADO
+    // </editor-fold> 
     
+    
+    // <editor-fold defaultstate="collapsed" desc="IMAGENES RETIRO"> 
     //Carga de imágenes para ranura de retirar
     private void lblImgRetirarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImgRetirarMouseEntered
         // TODO add your handling code here:
-            Icon imgMouseIn = new ImageIcon(getClass().getResource("/imagenes/ranuraCDinero.png"));
-            lblImgRetirar.setIcon(imgMouseIn);
+            /*Icon imgMouseIn = new ImageIcon(getClass().getResource("/imagenes/ranuraCDinero.png"));
+            lblImgRetirar.setIcon(imgMouseIn);*/
     }//GEN-LAST:event_lblImgRetirarMouseEntered
 
     private void lblImgRetirarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImgRetirarMouseExited
         // TODO add your handling code here:
-            Icon imgMouseOut = new ImageIcon(getClass().getResource("/imagenes/ranura.png"));
-            lblImgRetirar.setIcon(imgMouseOut);
+            /*Icon imgMouseOut = new ImageIcon(getClass().getResource("/imagenes/ranura.png"));
+            lblImgRetirar.setIcon(imgMouseOut);*/
     }//GEN-LAST:event_lblImgRetirarMouseExited
 
     private void lblImgRetirarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImgRetirarMousePressed
         // TODO add your handling code here:
-            Icon imgMouseClick = new ImageIcon(getClass().getResource("/imagenes/ranuraCDineroOut.png"));
-            lblImgRetirar.setIcon(imgMouseClick);
+            /*Icon imgMouseClick = new ImageIcon(getClass().getResource("/imagenes/ranuraCDineroOut.png"));
+            lblImgRetirar.setIcon(imgMouseClick);*/
     }//GEN-LAST:event_lblImgRetirarMousePressed
 
     private void lblImgRetirarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImgRetirarMouseReleased
@@ -371,33 +474,55 @@ public class FrmAtm extends javax.swing.JFrame {
     }//GEN-LAST:event_lblImgRetirarMouseReleased
 
     //Carga de imágenes para ranura de retirar
+    // </editor-fold> 
     
+
+    // <editor-fold defaultstate="collapsed" desc="IMAGENES DEPOSITO"> 
     //Carga de imágenes para ranura de depositar
     private void lblImagenDepositarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMouseEntered
         // TODO add your handling code here:
-            Icon imgMouseOut = new ImageIcon(getClass().getResource("/imagenes/ranuraCDinero.png"));
-            lblImagenDepositar.setIcon(imgMouseOut);
+            /*Icon imgMouseOut = new ImageIcon(getClass().getResource("/imagenes/ranuraCDinero.png"));
+            lblImagenDepositar.setIcon(imgMouseOut);*/
     }//GEN-LAST:event_lblImagenDepositarMouseEntered
 
     private void lblImagenDepositarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMouseExited
         // TODO add your handling code here:
-            Icon imgMouseOut = new ImageIcon(getClass().getResource("/imagenes/ranura.png"));
-            lblImagenDepositar.setIcon(imgMouseOut);
+            /*Icon imgMouseOut = new ImageIcon(getClass().getResource("/imagenes/ranura.png"));
+            lblImagenDepositar.setIcon(imgMouseOut);*/
     }//GEN-LAST:event_lblImagenDepositarMouseExited
 
     private void lblImagenDepositarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMousePressed
         // TODO add your handling code here:
-            Icon imgMouseClick = new ImageIcon(getClass().getResource("/imagenes/ranuraCDineroIn.png"));
-            lblImagenDepositar.setIcon(imgMouseClick);
+            /*Icon imgMouseClick = new ImageIcon(getClass().getResource("/imagenes/ranuraCDineroIn.png"));
+            lblImagenDepositar.setIcon(imgMouseClick);*/
     }//GEN-LAST:event_lblImagenDepositarMousePressed
 
     private void lblImagenDepositarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMouseReleased
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_lblImagenDepositarMouseReleased
+
+    private void txtPantallaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPantallaKeyTyped
+        // TODO add your handling code here:
+        char valid = evt.getKeyChar();
+        if (!Character.isDigit(valid))
+        {
+            evt.consume();
+        }
+        else if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            btnAccion();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPantallaKeyTyped
+
+    private void btnEjecutivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEjecutivoActionPerformed
+        // TODO add your handling code here:
+        FrmEjecutivo ejctv = new FrmEjecutivo();
+        ejctv.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnEjecutivoActionPerformed
     //Carga de imágenes para ranura de retirar
-    
-   
+    // </editor-fold> 
    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -431,20 +556,75 @@ public class FrmAtm extends javax.swing.JFrame {
         });
     }
 
-    /////////////////////////////////////////////////////////////Código DEITEL
+    /////////////////////////////////////////////////////////////
+    public void btnAccion()
+    {
+        if (primerEjecucion)
+        {
+            txtPantalla.setText("Bienvenido!\nEscriba su numero de cuenta: ");
+            primerEjecucion = false;
+        }
+        else
+        {
+            if (!cuentaIntroducida)
+            {
+                if (input != "")
+                {
+                    numeroCuentaActual = Integer.parseInt(input);
+                    cuentaIntroducida = true;
+                }
+                input = "";
+                txtPantalla.setText(txtPantalla.getText() + "\nEscriba su nip: ");
+            }
+            else
+            {
+                if(!nipIntroducido)
+                {
+                    if (input != "")
+                    {
+                        nipActual = Integer.parseInt(input);
+                        nipIntroducido = true;
+                    }
+                    input = "";
+                    autenticarUsuario();
+                }
+                else
+                {
+                    if (cuentaAutenticada)
+                    {
+                        FrmMenuMain men = new FrmMenuMain();
+                        men.setVisible(true);
+                        this.setVisible(false);
+                    }
+                    else
+                    {
+                        cuentaIntroducida = false;
+                        nipIntroducido = false;
+                        nipActual = 0;
+                        numeroCuentaActual = 0;
+                        input = "";
+                        primerEjecucion = true;
+                        btnAccion();
+                    }
+                }
+            }
+        }
+    }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /////////////////////////////////////////////////////////////Código DEITEL
+    public void autenticarUsuario()
+    {
+        try
+        {
+            cuentaAutenticada = baseDatosBanco.autenticarUsuario( numeroCuentaActual, nipActual );
+            btnAccion();
+        }
+        catch(Exception ex)
+        {
+            System.out.println(ex);
+        }
+                
+    }
+    /////////////////////////////////////////////////////////////
     
     
     
@@ -463,7 +643,6 @@ public class FrmAtm extends javax.swing.JFrame {
     private javax.swing.JButton btn9;
     private javax.swing.JButton btnEjecutivo;
     private javax.swing.JButton btnEnter;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -472,4 +651,6 @@ public class FrmAtm extends javax.swing.JFrame {
     private javax.swing.JPanel pnlBotones;
     public javax.swing.JTextArea txtPantalla;
     // End of variables declaration//GEN-END:variables
+
+
 }

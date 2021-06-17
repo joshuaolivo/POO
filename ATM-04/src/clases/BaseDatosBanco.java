@@ -4,14 +4,32 @@ package clases;
 
 public class BaseDatosBanco
 {
-   private Cuenta cuentas[];
+   private Cuenta cuentas[]; // arreglo de objetos Cuenta
+   private CArchivo archivos = new CArchivo();
    
    // el constructor sin argumentos de BaseDatosBanco inicializa a cuentas
    public BaseDatosBanco()
    {
-      cuentas = new Cuenta[ 2 ]; // s�lo 2 cuentas para probar
-      cuentas[ 0 ] = new Cuenta( 12345, 54321, 1000.0, 1200.0 );
-      cuentas[ 1 ] = new Cuenta( 98765, 56789, 200.0, 200.0 );  
+       
+       int fila = archivos.obtenerFilas();
+       cuentas = new Cuenta[ fila ]; // s�lo n cuentas para probar
+       String todas_cuentas = archivos.leerBD();
+       String arrayFilas[] = todas_cuentas.split(" ");
+       for (int i = 0; i< fila; i++)
+       {
+            String datosCuentaActual[] = arrayFilas[i].split(",");
+            int ncuenta = Integer.parseInt(datosCuentaActual[0]);
+            int nip = Integer.parseInt(datosCuentaActual[1]);
+            float sdisp = Float.parseFloat(datosCuentaActual[2]);
+            float stotal = Float.parseFloat(datosCuentaActual[3]);
+            cuentas[ i ] = new Cuenta( ncuenta, nip, sdisp, stotal );
+       }
+       /*
+       cuentas[ 0 ] = new Cuenta( 12345, 54321, 1000.0, 1200.0 );
+       cuentas[ 1 ] = new Cuenta( 98765, 56789, 200.0, 200.0 );
+       cuentas[ 2 ] = new Cuenta( 11111, 11111, 300.0, 500.0 );  
+       cuentas[ 3 ] = new Cuenta( 22222, 22222, 1800.0, 1800.0 );*/
+       
    } // fin del constructor sin argumentos de BaseDatosBanco
    
    // obtiene el objeto Cuenta que contiene el n�mero de cuenta especificado

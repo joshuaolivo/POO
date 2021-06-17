@@ -8,10 +8,10 @@ public class Cuenta
    private int nip; // NIP para autenticaci�n
    private double saldoDisponible; // fondos disponibles para retirar
    private double saldoTotal; // fondos disponibles + dep�sitos pendientes
+   private CArchivo archivos = new CArchivo();
 
    // el constructor de Cuenta inicializa los atributos
-   public Cuenta( int elNumeroDeCuenta, int elNIP, 
-      double elSaldoDisponible, double elSaldoTotal )
+   public Cuenta( int elNumeroDeCuenta, int elNIP, double elSaldoDisponible, double elSaldoTotal )
    {
       numeroCuenta = elNumeroDeCuenta;
       nip = elNIP;
@@ -43,14 +43,16 @@ public class Cuenta
    // abona un monto a la cuenta
    public void abonar( double monto )
    {
-      saldoTotal += monto; // lo suma al saldo total
+       archivos.modificarSaldo(numeroCuenta, nip, monto, 1);
+       saldoTotal += monto; // lo suma al saldo total
    } // fin del m�todo abonar
 
    // carga un monto a la cuenta
    public void cargar( double monto )
    {
-      saldoDisponible -= monto; // lo resta del saldo disponible
-      saldoTotal -= monto; // lo resta del saldo total
+        archivos.modificarSaldo(numeroCuenta, nip, monto, 2);
+        saldoDisponible -= monto; // lo resta del saldo disponible
+        saldoTotal -= monto; // lo resta del saldo total
    } // fin del m�todo cargar
 
    // devuelve el n�mero de cuenta
