@@ -6,8 +6,10 @@
 package form;
 
 import clases.Deposito;
+import clases.Pantalla;
 import clases.Retiro;
 import clases.SolicitudSaldo;
+import clases.Teclado;
 import clases.Transaccion;
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -24,8 +26,10 @@ import javax.swing.JOptionPane;
  */
 public class FrmMenuMain extends javax.swing.JFrame {
 
+    //////////////////////////////////////////////////////////////////////Inicio a pseudocódigo
+    private Pantalla pantalla = new Pantalla();
     Transaccion transaccionActual = null;
-    
+    private Teclado teclado = new Teclado();
     private boolean primerEjecucion = true;
     private String input = "";
     public static int numeroCuentaActual;
@@ -51,6 +55,8 @@ public class FrmMenuMain extends javax.swing.JFrame {
         btnAccion();
     }
 
+    //////////////////////////////////////////////////////////////////////Fin a pseudocódigo
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -246,20 +252,6 @@ public class FrmMenuMain extends javax.swing.JFrame {
         lblImgRetirar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImgRetirar.setToolTipText("");
         lblImgRetirar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        lblImgRetirar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblImgRetirarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblImgRetirarMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lblImgRetirarMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                lblImgRetirarMouseReleased(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -268,20 +260,6 @@ public class FrmMenuMain extends javax.swing.JFrame {
 
         lblImagenDepositar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImagenDepositar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        lblImagenDepositar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblImagenDepositarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblImagenDepositarMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lblImagenDepositarMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                lblImagenDepositarMouseReleased(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -324,104 +302,60 @@ public class FrmMenuMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
+    //////////////////////////////////////////////////////////////////////Inicio a pseudocódigo
     // <editor-fold defaultstate="collapsed" desc="TECLADO">      
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         // TODO add your handling code here:
         input = input + "3";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_3); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_3); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 3);
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         // TODO add your handling code here:
         input = input + "4";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_4); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_4); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 4);
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
         // TODO add your handling code here:
         input = input + "5";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_5); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_5); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 5);
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
         // TODO add your handling code here:
         input = input + "6";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_6); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_6); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 6);
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
         // TODO add your handling code here:
         input = input + "7";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_7); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_7); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 7);
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
         // TODO add your handling code here:
         input = input + "8";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_8); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_8); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 8);
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
         // TODO add your handling code here:
         input = input + "9";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_9); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_9); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 9);
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
         // TODO add your handling code here:
         input = input + "0";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_0); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_0); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 0);
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         // TODO add your handling code here:
         input = input + "1";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_1); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_1); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 1);
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
@@ -432,66 +366,13 @@ public class FrmMenuMain extends javax.swing.JFrame {
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         // TODO add your handling code here:
         input = input + "2";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_2); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_2); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 2);
     }//GEN-LAST:event_btn2ActionPerformed
 
     // </editor-fold> 
+    //////////////////////////////////////////////////////////////////////Fin a pseudocódigo
+     
     
-    
-    // <editor-fold defaultstate="collapsed" desc="IMAGENES RETIRO">      
-    private void lblImgRetirarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImgRetirarMouseEntered
-        // TODO add your handling code here:
-        /*Icon imgMouseIn = new ImageIcon(getClass().getResource("/imagenes/ranuraCDinero.png"));
-        lblImgRetirar.setIcon(imgMouseIn);*/
-    }//GEN-LAST:event_lblImgRetirarMouseEntered
-
-    private void lblImgRetirarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImgRetirarMouseExited
-        // TODO add your handling code here:
-        /*Icon imgMouseOut = new ImageIcon(getClass().getResource("/imagenes/ranura.png"));
-        lblImgRetirar.setIcon(imgMouseOut);*/
-    }//GEN-LAST:event_lblImgRetirarMouseExited
-
-    private void lblImgRetirarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImgRetirarMousePressed
-        // TODO add your handling code here:
-        /*Icon imgMouseClick = new ImageIcon(getClass().getResource("/imagenes/ranuraCDineroOut.png"));
-        lblImgRetirar.setIcon(imgMouseClick);*/
-    }//GEN-LAST:event_lblImgRetirarMousePressed
-
-    private void lblImgRetirarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImgRetirarMouseReleased
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_lblImgRetirarMouseReleased
-    // </editor-fold> 
-    
-    
-    // <editor-fold defaultstate="collapsed" desc="IMAGENES DEPOSITO">   
-    private void lblImagenDepositarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMouseEntered
-        // TODO add your handling code here:
-        /*Icon imgMouseOut = new ImageIcon(getClass().getResource("/imagenes/ranuraCDinero.png"));
-        lblImagenDepositar.setIcon(imgMouseOut);*/
-    }//GEN-LAST:event_lblImagenDepositarMouseEntered
-
-    private void lblImagenDepositarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMouseExited
-        // TODO add your handling code here:
-        /*Icon imgMouseOut = new ImageIcon(getClass().getResource("/imagenes/ranura.png"));
-        lblImagenDepositar.setIcon(imgMouseOut);*/
-    }//GEN-LAST:event_lblImagenDepositarMouseExited
-
-    private void lblImagenDepositarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMousePressed
-        // TODO add your handling code here:
-        /*Icon imgMouseClick = new ImageIcon(getClass().getResource("/imagenes/ranuraCDineroIn.png"));
-        lblImagenDepositar.setIcon(imgMouseClick);*/
-    }//GEN-LAST:event_lblImagenDepositarMousePressed
-
-    private void lblImagenDepositarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblImagenDepositarMouseReleased
-
     private void txtPantallaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPantallaKeyTyped
         // TODO add your handling code here:
         char valid = evt.getKeyChar();
@@ -506,8 +387,6 @@ public class FrmMenuMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtPantallaKeyTyped
                       
-    // </editor-fold> 
-    
     
     /**
      * @param args the command line arguments
@@ -545,13 +424,16 @@ public class FrmMenuMain extends javax.swing.JFrame {
         });
     }
 
+    
+    //////////////////////////////////////////////////////////////////////Inicio a pseudocódigo
     ///////////////////////////////////////////////////
     
     public void btnAccion()
     {
         if (primerEjecucion)
         {
-            txtPantalla.setText("Menu Principal\n-----------\n1.- Ver saldo\n2.- Depositar\n3.- Retirar\n4.- Salir\nSeleccione una opción: ");
+            pantalla.mostrarLineaMensaje(txtPantalla, "Menu Principal\n-----------\n1.- Ver saldo\n2."
+                    + "- Depositar\n3.- Retirar\n4.- Salir\nSeleccione una opción: ");
             primerEjecucion = false;
         }
         else
@@ -562,10 +444,11 @@ public class FrmMenuMain extends javax.swing.JFrame {
             {
                 case SOLICITUD_SALDO:
                     /*transaccionActual = crearTransaccion();*/
-                    String result = realizarDeposito();
+                    String result = verSaldo();
                     String parts[] = result.split("-");
-                    txtPantalla.setText("\nInformacion de saldo:" + "\n - Saldo disponible: " + parts[0] + "\n - Saldo total:          " +
-                            parts[1] + "\nPresiona una tecla para continuar.");
+                    pantalla.mostrarLineaMensaje(txtPantalla, "\nInformacion de saldo:" + "\n - Saldo "
+                            + "disponible: " + parts[0] + "\n - Saldo total:          " 
+                            + parts[1] + "\nPresiona una tecla para continuar.");
                     primerEjecucion = true;
                     break;
                 case RETIRO:
@@ -598,7 +481,7 @@ public class FrmMenuMain extends javax.swing.JFrame {
         return temp; // devuelve el obejto recién creado
     } // fin del m�todo crearTransaccion
     
-    public String realizarDeposito()
+    public String verSaldo()
     {
         input = "";
         Transaccion temp = null;
@@ -608,6 +491,7 @@ public class FrmMenuMain extends javax.swing.JFrame {
     }
     
     ///////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////Fin a pseudocódigo
     
 
     

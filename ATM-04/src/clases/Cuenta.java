@@ -2,64 +2,59 @@
 // Represents a bank account
 package clases;
 
-public class Cuenta 
-{
-   private int numeroCuenta; // n�mero de cuenta
-   private int nip; // NIP para autenticaci�n
-   private double saldoDisponible; // fondos disponibles para retirar
-   private double saldoTotal; // fondos disponibles + dep�sitos pendientes
-   private CArchivo archivos = new CArchivo();
+public class Cuenta {
 
-   // el constructor de Cuenta inicializa los atributos
-   public Cuenta( int elNumeroDeCuenta, int elNIP, double elSaldoDisponible, double elSaldoTotal )
-   {
-      numeroCuenta = elNumeroDeCuenta;
-      nip = elNIP;
-      saldoDisponible = elSaldoDisponible;
-      saldoTotal = elSaldoTotal;
-   } // fin del constructor de Cuenta
+    private int numeroCuenta; // n�mero de cuenta
+    private int nip; // NIP para autenticaci�n
+    private double saldoDisponible; // fondos disponibles para retirar
+    private double saldoTotal; // fondos disponibles + dep�sitos pendientes
+    private CArchivo archivos = new CArchivo();
 
-   // determina si un NIP especificado por el usuario coincide con el NIP en la Cuenta
-   public boolean validarNIP( int nipUsuario )
-   {
-      if ( nipUsuario == nip )
-         return true;
-      else
-         return false;
-   } // fin del m�todo validarNIP
-   
-   // devuelve el saldo disponible
-   public double obtenerSaldoDisponible()
-   {
-      return saldoDisponible;
-   } // fin de obtenerSaldoDisponible
+    // el constructor de Cuenta inicializa los atributos
+    public Cuenta(int elNumeroDeCuenta, int elNIP,
+            double elSaldoDisponible, double elSaldoTotal) {
+        numeroCuenta = elNumeroDeCuenta;
+        nip = elNIP;
+        saldoDisponible = elSaldoDisponible;
+        saldoTotal = elSaldoTotal;
+    } // fin del constructor de Cuenta
 
-   // devuelve el saldo total
-   public double obtenerSaldoTotal()
-   {
-      return saldoTotal;
-   } // fin del m�todo obtenerSaldoTotal
+    // determina si un NIP especificado por el usuario coincide con el NIP en la Cuenta
+    public boolean validarNIP(int nipUsuario) {
+        if (nipUsuario == nip) {
+            return true;
+        } else {
+            return false;
+        }
+    } // fin del m�todo validarNIP
 
-   // abona un monto a la cuenta
-   public void abonar( double monto )
-   {
-       archivos.modificarSaldo(numeroCuenta, nip, monto, 1);
-       saldoTotal += monto; // lo suma al saldo total
-   } // fin del m�todo abonar
+    // devuelve el saldo disponible
+    public double obtenerSaldoDisponible() {
+        return saldoDisponible;
+    } // fin de obtenerSaldoDisponible
 
-   // carga un monto a la cuenta
-   public void cargar( double monto )
-   {
+    // devuelve el saldo total
+    public double obtenerSaldoTotal() {
+        return saldoTotal;
+    } // fin del m�todo obtenerSaldoTotal
+
+    // abona un monto a la cuenta
+    public void abonar(double monto) {
+        archivos.modificarSaldo(numeroCuenta, nip, monto, 1);
+        saldoTotal += monto; // lo suma al saldo total
+    } // fin del m�todo abonar
+
+    // carga un monto a la cuenta
+    public void cargar(double monto) {
         archivos.modificarSaldo(numeroCuenta, nip, monto, 2);
         saldoDisponible -= monto; // lo resta del saldo disponible
         saldoTotal -= monto; // lo resta del saldo total
-   } // fin del m�todo cargar
+    } // fin del m�todo cargar
 
-   // devuelve el n�mero de cuenta
-   public int obtenerNumeroCuenta()
-   {
-      return numeroCuenta;  
-   } // fin del m�todo obtenerNumeroCuenta
+    // devuelve el n�mero de cuenta
+    public int obtenerNumeroCuenta() {
+        return numeroCuenta;
+    } // fin del m�todo obtenerNumeroCuenta
 } // fin de la clase Cuenta
 
 

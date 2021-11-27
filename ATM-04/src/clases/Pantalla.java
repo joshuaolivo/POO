@@ -2,25 +2,19 @@
 // Representa a la pantalla del ATM
 package clases;
 
-public class Pantalla
-{
-   // muestra un mensaje sin un retorno de carro
-   public void mostrarMensaje( String mensaje ) 
-   {
-      System.out.print( mensaje ); 
-   } // fin del m�todo mostrarMensaje
+import javax.swing.JTextArea;
 
-   // muestra un mensaje con un retorno de carro
-   public void mostrarLineaMensaje( String mensaje ) 
-   {
-      System.out.println( mensaje );   
-   } // fin del m�todo mostrarLineaMensaje
+public class Pantalla {
+    // muestra un mensaje sin un retorno de carro
 
-   // muestra un monto en d�lares
-   public void mostrarMontoDolares( double monto )
-   {
-      System.out.printf( "$%,.2f", monto );   
-   } // fin del m�todo mostrarMontoDolares 
+    public void mostrarMensaje(JTextArea pantalla, String mensaje) {
+        pantalla.setText(pantalla.getText() + mensaje);
+    } // fin del m�todo mostrarMensaje
+
+    // muestra un mensaje con un retorno de carro
+    public void mostrarLineaMensaje(JTextArea pantalla, String mensaje) {
+        pantalla.setText(mensaje);
+    } // fin del m�todo mostrarLineaMensaje
 } // fin de la clase Pantalla
 
 

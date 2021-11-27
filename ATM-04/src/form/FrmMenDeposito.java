@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package form;
 
-//import static form.FrmMenuMain.numeroCuentaActual;
 import clases.BaseDatosBanco;
 import clases.Deposito;
+import clases.Pantalla;
 import clases.Retiro;
+import clases.Teclado;
 import clases.Transaccion;
 import static form.FrmMenuMain.numeroCuentaActual;
 import java.awt.AWTException;
@@ -20,21 +16,18 @@ import javax.swing.JOptionPane;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/**
- *
- * @author elagu
- */
 public class FrmMenDeposito extends javax.swing.JFrame {
 
+    //////////////////////////////////////////////////////////////////////Inicio a pseudocódigo
+    private Pantalla pantalla = new Pantalla();
+    private Teclado teclado = new Teclado();
     private boolean primerEjecucion = true, bloquearEnter = false;
     private String input = "";
     private int numeroCuentaActual, tiempo;
     public static float op;
     private BaseDatosBanco baseDatosBanco; //  base de datos de informaci�n de las cuentas
     Icon imgIni = new ImageIcon(getClass().getResource("/imagenes/ranura.png"));
-    /**
-     * Creates new form FrmMenDepositar
-     */
+
     public FrmMenDeposito() {
         initComponents();
         setLocationRelativeTo(null);
@@ -45,6 +38,7 @@ public class FrmMenDeposito extends javax.swing.JFrame {
         numeroCuentaActual = atm.numeroCuentaActual;
         btnAccion();
     }
+    //////////////////////////////////////////////////////////////////////Fin a pseudocódigo
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -303,120 +297,68 @@ public class FrmMenDeposito extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //////////////////////////////////////////////////////////////////////Inicio a pseudocódigo
     // <editor-fold defaultstate="collapsed" desc="BOTONES">   
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         // TODO add your handling code here:
         input = input + "3";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_3); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_3); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 3);
+
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         // TODO add your handling code here:
         input = input + "4";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_4); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_4); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 4);
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
         // TODO add your handling code here:
         input = input + "5";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_5); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_5); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 5);
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
         // TODO add your handling code here:
         input = input + "6";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_6); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_6); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 6);
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
         // TODO add your handling code here:
         input = input + "7";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_7); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_7); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 7);
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
         // TODO add your handling code here:
         input = input + "8";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_8); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_8); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 8);
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
         // TODO add your handling code here:
         input = input + "9";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_9); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_9); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 9);
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
         // TODO add your handling code here:
         input = input + "0";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_0); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_0); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 0);
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         // TODO add your handling code here:
         input = input + "1";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_1); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_1); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 1);
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
         // TODO add your handling code here:
-        /*try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_ENTER); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_ENTER); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}*/
-        if(!bloquearEnter)
-        {
+        if (!bloquearEnter) {
             btnAccion();
-        }
-        else
-        {
+        } else {
             cancelarTransaccion();
         }
     }//GEN-LAST:event_btnEnterActionPerformed
@@ -424,12 +366,7 @@ public class FrmMenDeposito extends javax.swing.JFrame {
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         // TODO add your handling code here:
         input = input + "2";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_2); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_2); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 2);
     }//GEN-LAST:event_btn2ActionPerformed
 
     // </editor-fold> 
@@ -457,8 +394,7 @@ public class FrmMenDeposito extends javax.swing.JFrame {
         // TODO add your handling code here:
         Icon imgMouseOut = new ImageIcon(getClass().getResource("/imagenes/ranuraCDinero.png"));
         lblImagenDepositar.setIcon(imgMouseOut);
-        if(bloquearEnter)
-        {
+        if (bloquearEnter) {
             tiempo = -2000;
         }
     }//GEN-LAST:event_lblImagenDepositarMouseReleased
@@ -466,56 +402,44 @@ public class FrmMenDeposito extends javax.swing.JFrame {
     private void txtPantallaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPantallaKeyTyped
         // TODO add your handling code here:
         char valid = evt.getKeyChar();
-        if (!Character.isDigit(valid))
-        {
+        if (!Character.isDigit(valid)) {
             evt.consume();
-        }
-        else if(evt.getKeyCode() == KeyEvent.VK_ENTER)
-        {
+        } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             btnAccion();
             evt.consume();
         }
     }//GEN-LAST:event_txtPantallaKeyTyped
-    // </editor-fold> 
+    // </editor-fold>
     
-    public void btnAccion()
-    {
-        if (primerEjecucion)
-        {
-            txtPantalla.setText("Escriba un monto (en centavos, ej. 20050 equivale a 200.50)\na depositar.\n(Si desea cancelar la operación escriba 0).\nMonto: ");
+    public void btnAccion() {
+        if (primerEjecucion) {
+            pantalla.mostrarLineaMensaje(txtPantalla, "Escriba un monto (en centavos, ej. 20050 equivale"
+                    + " a 200.50)\na depositar.\n(Si desea cancelar la operación"
+                    + " escriba 0).\nMonto: ");
             primerEjecucion = false;
-        }
-        else
-        {
+        } else {
             op = Integer.parseInt(input) / 100;
-            if (op == 0)
-            {
+            if (op == 0) {
                 input = "";
                 FrmMenuMain men = new FrmMenuMain();
                 men.setVisible(true);
                 this.setVisible(false);
-            }
-            else
-            {
+            } else {
                 bloquearEnter = true;
-                txtPantalla.setText(txtPantalla.getText() + "\nInserte un sobre de: " + op + ". Si desea cancelar la operación\npresione enter.");
+                pantalla.mostrarMensaje(txtPantalla, "\nInserte un sobre de: "
+                        + op + ". Si desea cancelar la operación\npresione enter.");
                 tiempo = 0;
                 //Esta pantalla sirve para esperar que se inserte dinero
                 Timer timer1 = new Timer();
-                TimerTask task1 = new TimerTask()
-                {
+                TimerTask task1 = new TimerTask() {
                     @Override
-                    public void run()
-                    {
+                    public void run() {
                         tiempo = tiempo + 1000;
-                        if(tiempo == -1000)
-                        {
+                        if (tiempo == -1000) {
                             timer1.cancel();
                             realizarDeposito();
                             lblImagenDepositar.setIcon(imgIni);
-                        }
-                        else if (tiempo >= 120000)
-                        {
+                        } else if (tiempo >= 120000) {
                             timer1.cancel();
                             cancelarTransaccion();
                         }
@@ -525,25 +449,24 @@ public class FrmMenDeposito extends javax.swing.JFrame {
             }
         }
     }
-    
-    public void realizarDeposito()
-    {
+
+    public void realizarDeposito() {
         input = "";
         Transaccion temp = null;
-        temp = new Deposito( numeroCuentaActual, baseDatosBanco);
+        temp = new Deposito(numeroCuentaActual, baseDatosBanco);
         String result = temp.ejecutar();
         FrmMenuMain men = new FrmMenuMain();
         men.setVisible(true);
         this.setVisible(false);
     }
-    
-    private void cancelarTransaccion()
-    {
+
+    private void cancelarTransaccion() {
         FrmMenuMain men = new FrmMenuMain();
         men.setVisible(true);
         this.setVisible(false);
     }
-    
+    //////////////////////////////////////////////////////////////////////Fin a pseudocódigo
+
     /**
      * @param args the command line arguments
      */

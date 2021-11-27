@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package form;
 
 import clases.CArchivo;
+import clases.Pantalla;
 import clases.SolicitudSaldo;
+import clases.Teclado;
 import clases.Transaccion;
 import static form.FrmMenuMain.numeroCuentaActual;
 import java.awt.AWTException;
@@ -18,20 +15,19 @@ import java.util.Scanner;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author elagu
- */
 public class FrmEjecutivo extends javax.swing.JFrame {
 
+    //////////////////////////////////////////////////////////////////////Inicio a pseudocódigo
+    private Pantalla pantalla = new Pantalla();
+    private Teclado teclado = new Teclado();
     private CArchivo archivos = new CArchivo();
     private boolean primerEjecucion = true;
     private String input = "";
     private int seleccion = 0, state = 0;
+    private int ncuenta, nip;
+    
     Icon imgIni = new ImageIcon(getClass().getResource("/imagenes/ranura.png"));
-    /**
-     * Creates new form FrmEjecutivo
-     */
+
     public FrmEjecutivo() {
         initComponents();
         setLocationRelativeTo(null);
@@ -39,6 +35,7 @@ public class FrmEjecutivo extends javax.swing.JFrame {
         lblImagenDepositar.setIcon(imgIni);
         btnAccion();
     }
+    //////////////////////////////////////////////////////////////////////Fin a pseudocódigo
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -242,20 +239,6 @@ public class FrmEjecutivo extends javax.swing.JFrame {
 
         lblImagenDepositar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImagenDepositar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        lblImagenDepositar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblImagenDepositarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblImagenDepositarMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lblImagenDepositarMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                lblImagenDepositarMouseReleased(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -301,233 +284,129 @@ public class FrmEjecutivo extends javax.swing.JFrame {
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         // TODO add your handling code here:
         input = input + "3";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_3); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_3); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 3);
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         // TODO add your handling code here:
         input = input + "4";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_4); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_4); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 4);
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
         // TODO add your handling code here:
         input = input + "5";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_5); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_5); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 5);
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
         // TODO add your handling code here:
         input = input + "6";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_6); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_6); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 6);
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
         // TODO add your handling code here:
         input = input + "7";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_7); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_7); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 7);
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
         // TODO add your handling code here:
         input = input + "8";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_8); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_8); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 8);
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
         // TODO add your handling code here:
         input = input + "9";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_9); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_9); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 9);
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
         // TODO add your handling code here:
         input = input + "0";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_0); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_0); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 0);
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         // TODO add your handling code here:
         input = input + "1";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_1); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_1); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 1);
     }//GEN-LAST:event_btn1ActionPerformed
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
         // TODO add your handling code here:
-        /*try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_ENTER); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_ENTER); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}*/
-        switch(seleccion)
-        {
+        switch (seleccion) {
             case 0:
                 btnAccion();
                 break;
             case 1:
-                if (Integer.parseInt(input) != 0)
-                {
+                if (Integer.parseInt(input) != 0) {
                     confirmarDep(input);
-                }
-                else
-                {
+                } else {
                     primerEjecucion = true;
                     seleccion = 0;
                     btnAccion();
                 }
                 break;
             case 2:
-                if (Integer.parseInt(input) != 0)
-                {
-                    darDaja(input);
-                }
-                else
-                {
+                if (Integer.parseInt(input) != 0) {
+                    darBaja(input);
+                } else {
                     primerEjecucion = true;
                     seleccion = 0;
                     btnAccion();
                 }
                 break;
             case 3:
-                if (!input.equals("") && Integer.parseInt(input) != 0)
-                {
+                if (!input.equals("") && Integer.parseInt(input) != 0) {
                     inNIP(input);
-                }
-                else if (Integer.parseInt(input) == 0)
-                {
+                } else if (Integer.parseInt(input) == 0) {
                     primerEjecucion = true;
                     seleccion = 0;
                     btnAccion();
-                }
-                else
-                {
+                } else {
                     querys(4);
                 }
                 break;
             case 4:
-                if (!input.equals("") && Integer.parseInt(input) != 0)
-                {
+                if (!input.equals("") && Integer.parseInt(input) != 0) {
                     nip = Integer.parseInt(input);
                     archivos.crearCuenta(ncuenta, nip);
                     primerEjecucion = true;
                     seleccion = 0;
                     btnAccion();
-                }
-                else if (Integer.parseInt(input) == 0)
-                {
+                } else if (Integer.parseInt(input) == 0) {
                     primerEjecucion = true;
                     seleccion = 0;
                     btnAccion();
-                }
-                else
-                {
+                } else {
                     querys(4);
                 }
                 break;
-                
+
         }
     }//GEN-LAST:event_btnEnterActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         // TODO add your handling code here:
         input = input + "2";
-        try {
-            Robot robot = new Robot();
-            txtPantalla.requestFocus();
-            robot.keyPress(KeyEvent.VK_2); // Simula presionar la tecla
-            robot.keyRelease(KeyEvent.VK_2); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
+        teclado.obtenerEntrada(txtPantalla, 2);
     }//GEN-LAST:event_btn2ActionPerformed
 // </editor-fold> 
-    
-        // </editor-fold> 
-    
-    
-    // <editor-fold defaultstate="collapsed" desc="IMAGENES DEPOSITO"> 
-    private void lblImagenDepositarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMouseEntered
-        // TODO add your handling code here:
-        /*Icon imgMouseOut = new ImageIcon(getClass().getResource("/imagenes/ranuraCDinero.png"));
-        lblImagenDepositar.setIcon(imgMouseOut);*/
-    }//GEN-LAST:event_lblImagenDepositarMouseEntered
-
-    private void lblImagenDepositarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMouseExited
-        // TODO add your handling code here:
-        /*Icon imgMouseOut = new ImageIcon(getClass().getResource("/imagenes/ranura.png"));
-        lblImagenDepositar.setIcon(imgMouseOut);*/
-    }//GEN-LAST:event_lblImagenDepositarMouseExited
-
-    private void lblImagenDepositarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMousePressed
-        // TODO add your handling code here:
-        /*Icon imgMouseClick = new ImageIcon(getClass().getResource("/imagenes/ranuraCDineroIn.png"));
-        lblImagenDepositar.setIcon(imgMouseClick);*/
-    }//GEN-LAST:event_lblImagenDepositarMousePressed
-
-    private void lblImagenDepositarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblImagenDepositarMouseReleased
 
     private void txtPantallaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPantallaKeyTyped
         // TODO add your handling code here:
         char valid = evt.getKeyChar();
-        if (!Character.isDigit(valid))
-        {
+        if (!Character.isDigit(valid)) {
             evt.consume();
-        }
-        else if(evt.getKeyCode() == KeyEvent.VK_ENTER)
-        {
+        } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             btnAccion();
             evt.consume();
         }
     }//GEN-LAST:event_txtPantallaKeyTyped
-// </editor-fold> 
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -562,22 +441,19 @@ public class FrmEjecutivo extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void btnAccion()
-    {
-        if (primerEjecucion)
-        {
-            txtPantalla.setText("Menú de ejecutivo\n-----------\n1.- Consultar cuentas existentes."
-                    + "\n2.- Depositos pendientes de confirmación.\n3.- Dar de baja una cuenta.\n4.- Crear una cuenta."
+
+    //////////////////////////////////////////////////////////////////////Inicio a pseudocódigo
+    public void btnAccion() {
+        if (primerEjecucion) {
+            pantalla.mostrarLineaMensaje(txtPantalla, "Menú de ejecutivo\n-----------\n1.- Consultar "
+                    + "cuentas existentes.\n2.- Depositos pendientes de "
+                    + "confirmación.\n3.- Dar de baja una cuenta.\n4.- Crear una cuenta."
                     + "\n5.- Salir del menu.\nSeleccione una opción: ");
             primerEjecucion = false;
             input = "";
-        }
-        else
-        {
+        } else {
             int op = Integer.parseInt(input);
-            switch(op)
-            {
+            switch (op) {
                 case 1:
                     querys(1);
                     break;
@@ -603,73 +479,80 @@ public class FrmEjecutivo extends javax.swing.JFrame {
             }
         }
     }
-    
-    private void querys(int transaccion)
-    {
+
+    private void querys(int transaccion) {
         String act[] = archivos.getCuentas();
         int i = 1;
-        switch(transaccion)
-        {
+        switch (transaccion) {
             case 1:
-                txtPantalla.setText("Cuentas registradas:\nNo.Cuenta__|_NIP________|_Saldo_disponible_|_Saldo_total\n");
-                for(String cuenta : act)
-                {
+                pantalla.mostrarLineaMensaje(txtPantalla, "Cuentas registradas:\nNo.Cuenta__|_NIP"
+                        + "________|_Saldo_disponible_|_Saldo_total\n");
+                for (String cuenta : act) {
                     String div[] = cuenta.split(",");
-                    txtPantalla.setText(txtPantalla.getText() + div[0] + "            | " + div[1] + "            | " + div[2] + "                     | " + div[3] + "\n");
+                    pantalla.mostrarMensaje(txtPantalla , div[0] + "      "
+                            + "      | " + div[1] + "            | " + div[2]
+                            + "                     | " + div[3] + "\n");
                 }
-                txtPantalla.setText(txtPantalla.getText() + "Presione 'Aceptar para continuar'");
+                pantalla.mostrarMensaje(txtPantalla, "Presione 'Enter "
+                        + "para continuar'");
                 primerEjecucion = true;
                 input = "";
                 break;
             case 2:
-                txtPantalla.setText("Cuentas con confirmación de depósito pendiente:\n  |No.Cuenta__|_NIP________|_Saldo_disponible_|_Saldo_total\n");
-                for(String cuenta : act)
-                {
+                pantalla.mostrarLineaMensaje(txtPantalla, "Cuentas con confirmación de depósito "
+                        + "pendiente:\n  |No.Cuenta__|_NIP________|_Saldo_disponible"
+                        + "_|_Saldo_total\n");
+                for (String cuenta : act) {
                     String div[] = cuenta.split(",");
-                    if (!div[2].equals(div[3]))
-                    {
-                        txtPantalla.setText(txtPantalla.getText() + i + "   " + div[0] + "            | " + div[1] + "            | " + div[2] + "                     | " + div[3] + "\n");
+                    if (!div[2].equals(div[3])) {
+                        pantalla.mostrarMensaje(txtPantalla, i + "   "
+                                + div[0] + "            | " + div[1] + "            | "
+                                + div[2] + "                     | " + div[3] + "\n");
                         i++;
                     }
                 }
-                txtPantalla.setText(txtPantalla.getText() + "Escriba 0 para cancelar, o escriba el índice de alguna\ncuenta para confirmar el depósito: ");
+                pantalla.mostrarMensaje(txtPantalla, "Escriba 0 para "
+                        + "cancelar, o escriba el índice de alguna\ncuenta para "
+                        + "confirmar el depósito: ");
                 input = "";
                 seleccion = 1;
                 break;
             case 3:
-                txtPantalla.setText("Seleccione la cuenta a dar de baja:\nNo se podrán deshacer los cambios.\n  |No.Cuenta__|_NIP________|_Saldo_disponible_|_Saldo_total\n");
-                for(String cuenta : act)
-                {
+                pantalla.mostrarLineaMensaje(txtPantalla, "Seleccione la cuenta a dar de baja:\nNo se "
+                        + "podrán deshacer los cambios.\n  |No.Cuenta__|_NIP____"
+                        + "____|_Saldo_disponible_|_Saldo_total\n");
+                for (String cuenta : act) {
                     String div[] = cuenta.split(",");
-                    txtPantalla.setText(txtPantalla.getText() + i + "   "  + div[0] + "            | " + div[1] + "            | " + div[2] + "                     | " + div[3] + "\n");
+                    pantalla.mostrarMensaje(txtPantalla, i + "   "
+                            + div[0] + "            | " + div[1] + "            | "
+                            + div[2] + "                     | " + div[3] + "\n");
                     i++;
                 }
-                txtPantalla.setText(txtPantalla.getText() + "Escriba 0 para cancelar, o escriba el índice de alguna\ncuenta para confirmar la operación: ");
+                pantalla.mostrarMensaje(txtPantalla, "Escriba 0 para "
+                        + "cancelar, o escriba el índice de alguna\ncuenta para "
+                        + "confirmar la operación: ");
                 input = "";
                 seleccion = 2;
                 break;
             case 4:
-                txtPantalla.setText("Crear nueva cuenta\nSi desea cancelar la operación, escriba 0.\nIntroduce el número de cuenta: ");
+                pantalla.mostrarLineaMensaje(txtPantalla, "Crear nueva cuenta\nSi desea cancelar la "
+                        + "operación, escriba 0.\nIntroduce el número de cuenta: ");
                 state = 1;
                 seleccion = 3;
                 input = "";
                 break;
         }
-    } // fin del m�todo crearTransaccion
-    
-    private void confirmarDep(String noIndex)
-    {
+    }
+
+    private void confirmarDep(String noIndex) {
         String act[] = archivos.getCuentas();
         boolean encontrado = false;
-        int i=0;
+        int i = 0;
         int aCambiar = 0;
-        for(String cuenta : act)
-        {
+        for (String cuenta : act) {
             String div[] = cuenta.split(",");
-            if (!div[2].equals(div[3]))
-            {
-                if (i+1 == Integer.parseInt(noIndex))
-                {
+            if (!div[2].equals(div[3])) {
+                if (i + 1 == Integer.parseInt(noIndex)) {
                     aCambiar = Integer.valueOf(div[0]);
                     encontrado = true;
                     break;
@@ -677,62 +560,53 @@ public class FrmEjecutivo extends javax.swing.JFrame {
                 i++;
             }
         }
-        if (encontrado)
-        {
+        if (encontrado) {
             archivos.modificarSaldo(aCambiar, 0, 0, 3);
             input = "";
             seleccion = 0;
             primerEjecucion = true;
             btnAccion();
-        }
-        else
-        {
+        } else {
             querys(2);
             input = "";
         }
         input = "";
     }
-    
-    private void darDaja(String noIndex)
-    {
+
+    private void darBaja(String noIndex) {
         String act[] = archivos.getCuentas();
         boolean encontrado = false;
         int i = 0;
         int aBorrar = 0;
-        for(String cuenta : act)
-        {
+        for (String cuenta : act) {
             String div[] = cuenta.split(",");
-            if (i+1 == Integer.parseInt(noIndex))
-            {
+            if (i + 1 == Integer.parseInt(noIndex)) {
                 aBorrar = Integer.valueOf(div[0]);
                 encontrado = true;
                 break;
             }
             i++;
         }
-        if (encontrado)
-        {
+        if (encontrado) {
             archivos.borrarCuenta(aBorrar);
             input = "";
             seleccion = 0;
             primerEjecucion = true;
             btnAccion();
-        }
-        else
-        {
+        } else {
             querys(3);
             input = "";
         }
     }
-    
-    private int ncuenta, nip;
-    private void inNIP(String cuenta)
-    {
+
+
+    private void inNIP(String cuenta) {
         ncuenta = Integer.parseInt(cuenta);
-        txtPantalla.setText(txtPantalla.getText() + "\nIntroduce el NIP: ");
+        pantalla.mostrarMensaje(txtPantalla, "\nIntroduce el NIP: ");
         input = "";
         seleccion = 4;
     }
+    //////////////////////////////////////////////////////////////////////Fin a pseudocódigo
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn0;
