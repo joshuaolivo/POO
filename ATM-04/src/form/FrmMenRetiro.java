@@ -18,6 +18,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  *
@@ -25,9 +27,9 @@ import javax.swing.JOptionPane;
  */
 public class FrmMenRetiro extends javax.swing.JFrame {
 
-    private boolean primerEjecucion = true, otraCantidad = false;
+    private boolean primerEjecucion = true, otraCantidad = false, bloquearEnter = false;
     private String input = "";
-    private int numeroCuentaActual;
+    private int numeroCuentaActual, tiempo;
     public static int op;
     private DispensadorEfectivo dispensadorEfectivo; // dispensador de efectivo del ATM
     private BaseDatosBanco baseDatosBanco; //  base de datos de informaci�n de las cuentas
@@ -80,6 +82,11 @@ public class FrmMenRetiro extends javax.swing.JFrame {
         txtPantalla.setColumns(20);
         txtPantalla.setFont(new java.awt.Font("Century Gothic", 0, 13)); // NOI18N
         txtPantalla.setRows(5);
+        txtPantalla.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPantallaKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtPantalla);
 
         btn3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -257,20 +264,6 @@ public class FrmMenRetiro extends javax.swing.JFrame {
 
         lblImagenDepositar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblImagenDepositar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        lblImagenDepositar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblImagenDepositarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblImagenDepositarMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                lblImagenDepositarMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                lblImagenDepositarMouseReleased(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -414,13 +407,16 @@ public class FrmMenRetiro extends javax.swing.JFrame {
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
         // TODO add your handling code here:
-        try {
+        /*try {
             Robot robot = new Robot();
             txtPantalla.requestFocus();
             robot.keyPress(KeyEvent.VK_ENTER); // Simula presionar la tecla
             robot.keyRelease(KeyEvent.VK_ENTER); // Simula soltar la tecla
-        } catch (AWTException e) {System.out.print(e);}
-        btnAccion();
+        } catch (AWTException e) {System.out.print(e);}*/
+        if (!bloquearEnter)
+        {
+            btnAccion();
+        }
     }//GEN-LAST:event_btnEnterActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
@@ -457,35 +453,31 @@ public class FrmMenRetiro extends javax.swing.JFrame {
 
     private void lblImgRetirarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImgRetirarMouseReleased
         // TODO add your handling code here:
+        Icon imgMouseIn = new ImageIcon(getClass().getResource("/imagenes/ranuraCDinero.png"));
+        lblImgRetirar.setIcon(imgMouseIn);
+        if (bloquearEnter)
+        {
+            tiempo = 3000000;
+        }
     }//GEN-LAST:event_lblImgRetirarMouseReleased
 
-    // </editor-fold> 
-    
-    
-    // <editor-fold defaultstate="collapsed" desc="IMAGENES DEPOSITO"> 
-    private void lblImagenDepositarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMouseEntered
-        // TODO add your handling code here:
-        /*Icon imgMouseOut = new ImageIcon(getClass().getResource("/imagenes/ranuraCDinero.png"));
-        lblImagenDepositar.setIcon(imgMouseOut);*/
-    }//GEN-LAST:event_lblImagenDepositarMouseEntered
-
-    private void lblImagenDepositarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMouseExited
-        // TODO add your handling code here:
-        /*Icon imgMouseOut = new ImageIcon(getClass().getResource("/imagenes/ranura.png"));
-        lblImagenDepositar.setIcon(imgMouseOut);*/
-    }//GEN-LAST:event_lblImagenDepositarMouseExited
-
-    private void lblImagenDepositarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMousePressed
-        // TODO add your handling code here:
-        /*Icon imgMouseClick = new ImageIcon(getClass().getResource("/imagenes/ranuraCDineroIn.png"));
-        lblImagenDepositar.setIcon(imgMouseClick);*/
-    }//GEN-LAST:event_lblImagenDepositarMousePressed
-
-    private void lblImagenDepositarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImagenDepositarMouseReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblImagenDepositarMouseReleased
 // </editor-fold> 
     
+    
+    private void txtPantallaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPantallaKeyTyped
+        // TODO add your handling code here:
+        char valid = evt.getKeyChar();
+        if (!Character.isDigit(valid))
+        {
+            evt.consume();
+        }
+        else if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            btnAccion();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPantallaKeyTyped
+
     
     public void btnAccion()
     {
@@ -548,29 +540,54 @@ public class FrmMenRetiro extends javax.swing.JFrame {
         Transaccion temp = null;
         temp = new Retiro( numeroCuentaActual, baseDatosBanco);
         String result = temp.ejecutar();
-        System.out.print(result);
+        //System.out.print(result);
         txtPantalla.setText(txtPantalla.getText() + result);
         
         if (result.contains("monto menor."))
         {
+            primerEjecucion = true;
             otraCantidad = false;
+            btnAccion();
             input = "";
         }
         else
         {
-            FrmMenuMain men = new FrmMenuMain();
-            men.setVisible(true);
-            this.setVisible(false);
+            txtPantalla.setText(txtPantalla.getText() + "\nRetire el dinero de la ranura por favor.");
+            bloquearEnter = true;
+            
+            tiempo = 0;
+            //Esta pantalla sirve para esperar que se retire dinero
+            Timer timer = new Timer();
+            TimerTask task = new TimerTask()
+            {
+                @Override
+                public void run()
+                {
+                    tiempo = tiempo + 1000;
+                    if (tiempo >= 3000000)
+                    {
+                        timer.cancel();
+                        terminarRetiro();
+                    }
+                }
+            };
+            timer.schedule(task, 0, 1000);
         }
     }
     
-    
+    public void terminarRetiro()
+    {
+        FrmMenuMain men = new FrmMenuMain();
+        men.setVisible(true);
+        this.setVisible(false);
+    }
+    /*
     public void realizarDeposito()
     {
         input = "";
         Transaccion temp = null;
         String result_saldo = temp.ejecutar();
-    }
+    }*/
     
     /**
      * @param args the command line arguments

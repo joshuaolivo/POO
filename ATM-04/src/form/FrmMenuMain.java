@@ -495,8 +495,13 @@ public class FrmMenuMain extends javax.swing.JFrame {
     private void txtPantallaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPantallaKeyTyped
         // TODO add your handling code here:
         char valid = evt.getKeyChar();
-        if (Character.isLetter(valid))
+        if (!Character.isDigit(valid))
         {
+            evt.consume();
+        }
+        else if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            btnAccion();
             evt.consume();
         }
     }//GEN-LAST:event_txtPantallaKeyTyped
