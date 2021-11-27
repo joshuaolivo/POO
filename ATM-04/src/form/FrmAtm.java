@@ -12,10 +12,7 @@ import javax.swing.JOptionPane;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
-/**
- *
- * @author elagu
- */
+
 public class FrmAtm extends javax.swing.JFrame{
    
     private boolean cuentaAutenticada = false, cuentaIntroducida = false, nipIntroducido = false, primerEjecucion = true; // indica si el usuario es autenticado
